@@ -1,6 +1,9 @@
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/layout/default_layout.dart';
+import 'package:arami/home/view/home_screen.dart';
 import 'package:flutter/material.dart';
+
+import '../const/size..dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -13,8 +16,19 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
+    Future.delayed(const Duration(seconds: 3), () {
+      pageMove();
+    });
     super.initState();
+  }
+
+  void pageMove(){
+    Navigator.of(context).pushAndRemoveUntil(
+      MaterialPageRoute(
+        builder: (context) => HomeScreen(),
+      ),
+          (route) => false,
+    );
   }
 
   @override
@@ -24,12 +38,27 @@ class _SplashScreenState extends State<SplashScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            width: MediaQuery.of(context).size.width,
-            child: Text(
-              '스플레시',
+          Center(
+            child: Container(
+              alignment: Alignment.center,
+              color: GRAY030,
+              width: 60.0 * getScaleWidth(context),
+              height: 60.0 * getScaleWidth(context),
+              child: Text(
+                'Logo',
+              ),
             ),
           ),
+          SizedBox(
+            height: 16.0,
+          ),
+          Container(
+            width: 40.0 * getScaleWidth(context),
+            height: 40.0 * getScaleWidth(context),
+            child: CircularProgressIndicator(
+              color: MAIN_COLOR,
+            ),
+          )
         ],
       ),
     );
