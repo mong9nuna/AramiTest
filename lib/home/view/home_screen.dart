@@ -1,4 +1,7 @@
 import 'package:arami/common/layout/default_layout.dart';
+import 'package:arami/home/component/free_content_card.dart';
+import 'package:arami/home/component/step_books_card.dart';
+import 'package:arami/home/component/todaybooks_card.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -7,9 +10,17 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      child: Container(
-        alignment: Alignment.center,
-        child: Text('홈화면'),
+      logoType: true,
+      appbarType: true,
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            TodayBooksCard(),
+            FreeContentCard(),
+            StepBooksCard(),
+          ],
+        ),
       ),
     );
   }
