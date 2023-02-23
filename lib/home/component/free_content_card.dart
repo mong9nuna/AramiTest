@@ -84,48 +84,53 @@ class _FreeContentCardState extends State<FreeContentCard> {
             itemCount: menu.length,
             itemBuilder: (BuildContext context, int index) {
               bool last = menu.length == (index + 1);
-              return Padding(
-                padding: index == 0
-                    ? EdgeInsets.only(
-                        left: 16.0 * getScaleWidth(context),
-                        right: 10.0 * getScaleWidth(context),
-                      )
-                    : EdgeInsets.symmetric(
-                        horizontal: 10.0 * getScaleWidth(context)),
-                child: SizedBox(
-                  width: 120.0 * getScaleWidth(context),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Container(
-                        height: 150.0 * getScaleWidth(context),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4.0),
-                          child: Image.asset(
-                            menu[index]['thumbNail'],
-                            fit: BoxFit.fill,
+              return GestureDetector(
+                onTap: () {
+                  print('$index 무료 콘텐츠 작동');
+                },
+                child: Padding(
+                  padding: index == 0
+                      ? EdgeInsets.only(
+                          left: 16.0 * getScaleWidth(context),
+                          right: 10.0 * getScaleWidth(context),
+                        )
+                      : EdgeInsets.symmetric(
+                          horizontal: 10.0 * getScaleWidth(context)),
+                  child: SizedBox(
+                    width: 120.0 * getScaleWidth(context),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 150.0 * getScaleWidth(context),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(4.0),
+                            child: Image.asset(
+                              menu[index]['thumbNail'],
+                              fit: BoxFit.fill,
+                            ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(
-                          top: 8.0 * getScaleWidth(context),
-                          bottom: 4.0 * getScaleWidth(context),
-                        ),
-                        child: Text(
-                          menu[index]['title'],
-                          style: BODY3_BOLD.copyWith(
-                            fontSize: 16.0 * getFontWidth(context),
+                        Padding(
+                          padding: EdgeInsets.only(
+                            top: 8.0 * getScaleWidth(context),
+                            bottom: 4.0 * getScaleWidth(context),
+                          ),
+                          child: Text(
+                            menu[index]['title'],
+                            style: BODY3_BOLD.copyWith(
+                              fontSize: 16.0 * getFontWidth(context),
+                            ),
                           ),
                         ),
-                      ),
-                      Text(
-                        menu[index]['subTitle'],
-                        style: BODY2_REGULAR.copyWith(
-                          fontSize: 14.0 * getFontWidth(context),
+                        Text(
+                          menu[index]['subTitle'],
+                          style: BODY2_REGULAR.copyWith(
+                            fontSize: 14.0 * getFontWidth(context),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               );

@@ -208,39 +208,44 @@ class _StepBooksCardState extends State<StepBooksCard> {
               scrollDirection: Axis.horizontal,
               itemCount: stepBooks[selectMenu]['item'].length,
               itemBuilder: (BuildContext context, int index) {
-                return Padding(
-                  padding: index == 0
-                      ? EdgeInsets.only(
-                          left: 16.0 * getScaleWidth(context),
-                          right: 8.0 * getScaleWidth(context),
-                        )
-                      : EdgeInsets.symmetric(
-                          horizontal: 8.0 * getScaleWidth(context)),
-                  child: SizedBox(
-                    width: 120.0 * getScaleWidth(context),
-                    child: Column(
-                      children: [
-                        SizedBox(
-                          height: 120.0 * getScaleWidth(context),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(8.0),
-                            child: Image.asset(stepBooks[selectMenu]['item']
-                                [index]['thumbNail']),
+                return GestureDetector(
+                  onTap: () {
+                    print('$index 전집보기 작동');
+                  },
+                  child: Padding(
+                    padding: index == 0
+                        ? EdgeInsets.only(
+                            left: 16.0 * getScaleWidth(context),
+                            right: 8.0 * getScaleWidth(context),
+                          )
+                        : EdgeInsets.symmetric(
+                            horizontal: 8.0 * getScaleWidth(context)),
+                    child: SizedBox(
+                      width: 120.0 * getScaleWidth(context),
+                      child: Column(
+                        children: [
+                          SizedBox(
+                            height: 120.0 * getScaleWidth(context),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(8.0),
+                              child: Image.asset(stepBooks[selectMenu]['item']
+                                  [index]['thumbNail']),
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 8.0,
-                        ),
-                        Text(
-                          stepBooks[selectMenu]['item'][index]['title'],
-                          overflow: TextOverflow.ellipsis,
-                          maxLines: 2,
-                          softWrap: false,
-                          style: BODY3_BOLD.copyWith(
-                            fontSize: 14.0 * getScaleWidth(context),
+                          const SizedBox(
+                            height: 8.0,
                           ),
-                        )
-                      ],
+                          Text(
+                            stepBooks[selectMenu]['item'][index]['title'],
+                            overflow: TextOverflow.ellipsis,
+                            maxLines: 2,
+                            softWrap: false,
+                            style: BODY3_BOLD.copyWith(
+                              fontSize: 14.0 * getScaleWidth(context),
+                            ),
+                          )
+                        ],
+                      ),
                     ),
                   ),
                 );

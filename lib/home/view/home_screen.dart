@@ -1,4 +1,5 @@
 import 'package:arami/common/layout/default_layout.dart';
+import 'package:arami/home/component/event_card.dart';
 import 'package:arami/home/component/free_content_card.dart';
 import 'package:arami/home/component/step_books_card.dart';
 import 'package:arami/home/component/todaybooks_card.dart';
@@ -19,6 +20,7 @@ class HomeScreen extends StatelessWidget {
             TodayBooksCard(),
             FreeContentCard(),
             StepBooksCard(),
+            EventCard(),
           ],
         ),
       ),
