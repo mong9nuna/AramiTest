@@ -57,6 +57,14 @@ class _NotiScreenState extends State<NotiScreen> {
         child: Column(
           children: [
             Container(
+              decoration: BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(
+                    width: 1,
+                    color: OUTLINE,
+                  ),
+                ),
+              ),
               height: 50.0 * getScaleWidth(context),
               child: TabBar(
                 indicatorSize: TabBarIndicatorSize.label,

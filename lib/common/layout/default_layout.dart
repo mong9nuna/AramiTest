@@ -28,13 +28,13 @@ class DefaultLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: backgroundColor ?? WHITE,
-      body: SafeArea(
-        child: child,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: backgroundColor ?? WHITE,
+        body: child,
+        bottomNavigationBar: bottomNavigationBar,
+        appBar: appbarType ? renderAppBar(appTitle, context) : null,
       ),
-      bottomNavigationBar: bottomNavigationBar,
-      appBar: appbarType ? renderAppBar(appTitle, context) : null,
     );
   }
 
@@ -57,9 +57,8 @@ class DefaultLayout extends StatelessWidget {
               ),
             ),
       foregroundColor: Colors.black,
-      leadingWidth: appbarPointView
-          ? 110.0 * getScaleWidth(context)
-          : 50.0 * getScaleWidth(context),
+      leadingWidth: appbarPointView ? 110.0 * getScaleWidth(context) : 50.0 * getScaleWidth(
+          context),
       leading: appbarPointView
           ? Padding(
               padding: const EdgeInsets.only(left: 16.0),

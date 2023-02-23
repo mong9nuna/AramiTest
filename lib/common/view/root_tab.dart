@@ -43,7 +43,7 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
       appbarPointView: false,
       appbarType: false,
       logoType: false,
-      bottomNavigationBar: Container(
+      bottomNavigationBar: SizedBox(
         height: 50.0 * getScaleWidth(context),
         child: BottomNavigationBar(
           backgroundColor: WHITE,
