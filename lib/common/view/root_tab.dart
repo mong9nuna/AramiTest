@@ -39,6 +39,8 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
+      elevations: 0,
+      appbarPointView: false,
       appbarType: false,
       logoType: false,
       bottomNavigationBar: Container(

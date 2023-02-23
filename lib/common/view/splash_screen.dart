@@ -35,6 +35,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
+      elevations: 0,
+      appbarPointView: false,
       logoType: false,
       appbarType: false,
       backgroundColor: LIGHT_BG1,

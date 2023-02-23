@@ -1,6 +1,7 @@
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
+import 'package:arami/home/view/noti_screen.dart';
 import 'package:flutter/material.dart';
 
 class DefaultLayout extends StatelessWidget {
@@ -8,16 +9,20 @@ class DefaultLayout extends StatelessWidget {
   final Widget child;
   final Widget? bottomNavigationBar;
   final String? appTitle;
+  final bool appbarPointView;
   final bool appbarType;
   final bool logoType;
+  final double elevations;
 
   const DefaultLayout({
     this.backgroundColor,
     required this.child,
     this.bottomNavigationBar,
     this.appTitle,
+    required this.appbarPointView,
     required this.appbarType,
     required this.logoType,
+    required this.elevations,
     Key? key,
   }) : super(key: key);
 
@@ -25,7 +30,9 @@ class DefaultLayout extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: backgroundColor ?? WHITE,
-      body: child,
+      body: SafeArea(
+        child: child,
+      ),
       bottomNavigationBar: bottomNavigationBar,
       appBar: appbarType ? renderAppBar(appTitle, context) : null,
     );
@@ -36,7 +43,7 @@ class DefaultLayout extends StatelessWidget {
       toolbarHeight: 50 * getScaleWidth(context),
       centerTitle: true,
       backgroundColor: Colors.white,
-      elevation: 1,
+      elevation: elevations,
       title: logoType
           ? Image.asset(
               'asset/img/logo/sample_logo.png',
@@ -50,38 +57,56 @@ class DefaultLayout extends StatelessWidget {
               ),
             ),
       foregroundColor: Colors.black,
-      leadingWidth: 110.0 * getScaleWidth(context),
-      leading: Padding(
-        padding: const EdgeInsets.only(left: 16.0),
-        child: GestureDetector(
-          onTap: () {
-            print('작동');
-          },
-          child: Container(
-            width: 70.0 * getScaleWidth(context),
-            height: 24.0 * getScaleWidth(context),
-            child: Row(
-              children: [
-                Image.asset(
-                  'asset/img/icons/point_icon.png',
-                  width: 24.0 * getScaleWidth(context),
+      leadingWidth: appbarPointView
+          ? 110.0 * getScaleWidth(context)
+          : 50.0 * getScaleWidth(context),
+      leading: appbarPointView
+          ? Padding(
+              padding: const EdgeInsets.only(left: 16.0),
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => NotiScreen(),
+                    ),
+                  );
+                },
+                child: Container(
+                  width: 70.0 * getScaleWidth(context),
                   height: 24.0 * getScaleWidth(context),
-                ),
-                SizedBox(
-                  width: 8.0,
-                ),
-                Text(
-                  '999,999p',
-                  style: BODY1_BOLD.copyWith(
-                    color: MAIN_COLOR,
-                    fontSize: 12.0 * getFontWidth(context),
+                  child: Row(
+                    children: [
+                      Image.asset(
+                        'asset/img/icons/point_icon.png',
+                        width: 24.0 * getScaleWidth(context),
+                        height: 24.0 * getScaleWidth(context),
+                      ),
+                      SizedBox(
+                        width: 8.0,
+                      ),
+                      Text(
+                        '999,999p',
+                        style: BODY1_BOLD.copyWith(
+                          color: MAIN_COLOR,
+                          fontSize: 12.0 * getFontWidth(context),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
-              ],
+              ),
+            )
+          : IconButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              padding: EdgeInsets.zero,
+              constraints: const BoxConstraints(),
+              icon: Icon(
+                Icons.arrow_back,
+                size: 24.0 * getScaleWidth(context),
+              ),
             ),
-          ),
-        ),
-      ),
       actions: [
         Padding(
           padding: EdgeInsets.only(right: 13.0),
@@ -91,7 +116,7 @@ class DefaultLayout extends StatelessWidget {
     );
   }
 
-  IconButton notiIcon(BuildContext context){
+  IconButton notiIcon(BuildContext context) {
     return IconButton(
       constraints: BoxConstraints(),
       onPressed: () {},
