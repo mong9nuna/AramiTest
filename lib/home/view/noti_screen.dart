@@ -16,7 +16,6 @@ class _NotiScreenState extends State<NotiScreen> {
   Widget build(BuildContext context) {
     List<Widget> _views = [
       Tab(
-        height: 50.0 * getScaleWidth(context),
         child: Container(
           width: 132.0 * getScaleWidth(context),
           alignment: Alignment.center,
@@ -32,7 +31,6 @@ class _NotiScreenState extends State<NotiScreen> {
         ),
       ),
       Tab(
-        height: 50.0 * getScaleWidth(context),
         child: Container(
           width: 132.0 * getScaleWidth(context),
           alignment: Alignment.center,
