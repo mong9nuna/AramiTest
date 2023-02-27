@@ -11,10 +11,10 @@ class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      elevations: 1,
-      appbarPointView: true,
-      logoType: true,
-      appbarType: true,
+      elevations: 0,
+      appbarPointView: false,
+      appbarType: false,
+      logoType: false,
       child: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

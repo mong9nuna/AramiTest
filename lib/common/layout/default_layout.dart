@@ -1,7 +1,7 @@
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
-import 'package:arami/home/view/noti_screen.dart';
+import 'package:arami/home/view/noti_main_screen.dart';
 import 'package:flutter/material.dart';
 
 class DefaultLayout extends StatelessWidget {
@@ -13,6 +13,7 @@ class DefaultLayout extends StatelessWidget {
   final bool appbarType;
   final bool logoType;
   final double elevations;
+  final bool notiButton;
 
   const DefaultLayout({
     this.backgroundColor,
@@ -23,6 +24,7 @@ class DefaultLayout extends StatelessWidget {
     required this.appbarType,
     required this.logoType,
     required this.elevations,
+    this.notiButton = false,
     Key? key,
   }) : super(key: key);
 
@@ -66,7 +68,7 @@ class DefaultLayout extends StatelessWidget {
                 onTap: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => NotiScreen(),
+                      builder: (context) => NotiMainScreen(initialIndex: 1),
                     ),
                   );
                 },
@@ -84,7 +86,7 @@ class DefaultLayout extends StatelessWidget {
                         width: 8.0,
                       ),
                       Text(
-                        '999,999p',
+                        '1,230p',
                         style: BODY1_BOLD.copyWith(
                           color: MAIN_COLOR,
                           fontSize: 12.0 * getFontWidth(context),
@@ -107,6 +109,7 @@ class DefaultLayout extends StatelessWidget {
               ),
             ),
       actions: [
+        if(notiButton)
         Padding(
           padding: EdgeInsets.only(right: 13.0),
           child: notiIcon(context),
@@ -118,7 +121,13 @@ class DefaultLayout extends StatelessWidget {
   IconButton notiIcon(BuildContext context) {
     return IconButton(
       constraints: BoxConstraints(),
-      onPressed: () {},
+      onPressed: () {
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => NotiMainScreen(initialIndex: 0),
+          ),
+        );
+      },
       icon: Image.asset(
         'asset/img/icons/noti_new.png',
         width: 24.0 * getScaleWidth(context),

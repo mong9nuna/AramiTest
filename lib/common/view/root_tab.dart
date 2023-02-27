@@ -3,6 +3,7 @@ import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
 import 'package:arami/common/layout/default_layout.dart';
 import 'package:arami/home/view/home_screen.dart';
+import 'package:arami/parenting/view/parenting_main_screen.dart';
 import 'package:flutter/material.dart';
 
 class RootTab extends StatefulWidget {
@@ -13,6 +14,8 @@ class RootTab extends StatefulWidget {
 }
 
 class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
+  bool logoListener = true;
+  String appTitle = '';
   late TabController controller;
   int index = 0;
 
@@ -20,7 +23,6 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
   void initState() {
     super.initState();
     controller = TabController(length: 4, vsync: this);
-
     controller.addListener(tabListener);
   }
 
@@ -31,18 +33,42 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
   }
 
   void tabListener() {
-    setState(() {
-      index = controller.index;
-    });
+    setState(
+          () {
+        index = controller.index;
+      /*
+        if (index != 0) {
+          logoListener = false;
+          switch(index) {
+            case 1 :
+            appTitle = '책육아';
+            break;
+
+            case 2 :
+            appTitle = '라이브러리';
+            break;
+
+            case 3 :
+            appTitle = '마이페이지';
+            break;
+          }
+        } else {
+          logoListener = true;
+        }
+
+       */
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return DefaultLayout(
-      elevations: 0,
-      appbarPointView: false,
-      appbarType: false,
-      logoType: false,
+      elevations: 1,
+      appbarPointView: true,
+      logoType: true,
+      appbarType: true,
+      notiButton: true,
       bottomNavigationBar: SizedBox(
         height: 50.0 * getScaleWidth(context),
         child: BottomNavigationBar(
@@ -94,12 +120,8 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
         physics: const NeverScrollableScrollPhysics(),
         controller: controller,
         children: [
-          HomeScreen(),
-          Center(
-            child: Container(
-              child: Text('책육아'),
-            ),
-          ),
+          const HomeScreen(),
+          const ParentingMainScreen(),
           Center(
             child: Container(
               child: Text('라이브러리'),
@@ -134,7 +156,7 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
           Text(
             text,
             style: BODY1_REGULAR.copyWith(
-              fontSize: 12 * getFontWidth(context),
+                fontSize: 12 * getFontWidth(context),
                 color: activeType ? MAIN_COLOR_IMPACT : GRAY050),
           ),
         ],
