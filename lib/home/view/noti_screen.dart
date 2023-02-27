@@ -9,6 +9,7 @@ class NotiScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     final List<Map<String, dynamic>> notiList = [
       {
         'icons': 'asset/img/icons/noti_point_icon.png',
@@ -82,6 +83,39 @@ class NotiScreen extends StatelessWidget {
         'detail': '새로운 오늘의 책활동이 업데이트됐어요!',
         'date': '2023-01-08 15:00:00',
       },
+=======
+    List<Widget> _views = [
+      Tab(
+        child: Container(
+          width: 132.0 * getScaleWidth(context),
+          alignment: Alignment.center,
+          child: Padding(
+            padding: EdgeInsets.only(
+              top: 16.0 * getScaleWidth(context),
+              bottom: 8.0 * getScaleWidth(context),
+            ),
+            child: const Text(
+              '활동 알림',
+            ),
+          ),
+        ),
+      ),
+      Tab(
+        child: Container(
+          width: 132.0 * getScaleWidth(context),
+          alignment: Alignment.center,
+          child: Padding(
+            padding: EdgeInsets.only(
+              top: 16.0 * getScaleWidth(context),
+              bottom: 8.0 * getScaleWidth(context),
+            ),
+            child: const Text(
+              '포인트 알림',
+            ),
+          ),
+        ),
+      ),
+>>>>>>> origin/suyul1004
     ];
     return ListView.builder(
       padding: EdgeInsets.symmetric(
