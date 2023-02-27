@@ -1,6 +1,7 @@
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
+import 'package:arami/parenting/view/parenting_todaybooks_screen.dart';
 import 'package:flutter/material.dart';
 
 class TodayBooksCard extends StatefulWidget {
@@ -39,7 +40,11 @@ class _TodayBooksCardState extends State<TodayBooksCard> {
                 ),
                 GestureDetector(
                   onTap: () {
-                    print('오늘의 책활동 더보기 작동');
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => ParentingTodayBooksScreen(),
+                      ),
+                    );
                   },
                   child: Text(
                     '더보기 +',
@@ -65,7 +70,11 @@ class _TodayBooksCardState extends State<TodayBooksCard> {
           ),
           GestureDetector(
             onTap: () {
-              print('오늘의 책활동 작동');
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ParentingTodayBooksScreen(),
+                ),
+              );
             },
             child: Container(
               alignment: Alignment.center,
