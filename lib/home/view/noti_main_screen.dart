@@ -84,48 +84,5 @@ class _NotiMainScreenState extends State<NotiMainScreen> {
         tabView: tabView,
       ),
     );
-    /*
-    return DefaultTabController(
-      length: 2,
-      child: DefaultLayout(
-        elevations: 0,
-        appbarPointView: false,
-        appbarType: true,
-        appTitle: '알림',
-        logoType: false,
-        child: Column(
-          children: [
-            Container(
-              decoration: BoxDecoration(
-                border: Border(
-                  bottom: BorderSide(
-                    width: 1,
-                    color: OUTLINE,
-                  ),
-                ),
-              ),
-              height: 50.0 * getScaleWidth(context),
-              child: TabBar(
-                indicatorSize: TabBarIndicatorSize.label,
-                indicator: UnderlineTabIndicator(
-                  borderSide: BorderSide(width: 2, color: MAIN_COLOR),
-                ),
-                labelColor: MAIN_COLOR,
-                unselectedLabelColor: GRAY020,
-                labelStyle: BODY3_BOLD.copyWith(
-                  fontSize: 16.0 * getScaleWidth(context),
-                ),
-                unselectedLabelStyle: BODY3_BOLD.copyWith(
-                  fontSize: 16.0 * getScaleWidth(context),
-                  color: GRAY020,
-                ),
-                tabs: _views,
-              ),
-            ),
-          ],
-        ),
-      ),
-    );
-    */
   }
 }

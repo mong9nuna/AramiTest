@@ -6,7 +6,6 @@ import 'package:flutter/material.dart';
 
 class DefaultLayout extends StatelessWidget {
   final Color? backgroundColor;
-  final Widget child;
   final Widget? bottomNavigationBar;
   final String? appTitle;
   final bool appbarPointView;
@@ -14,10 +13,11 @@ class DefaultLayout extends StatelessWidget {
   final bool logoType;
   final double elevations;
   final bool notiButton;
+  final bool calendarButton;
+  final Widget child;
 
   const DefaultLayout({
     this.backgroundColor,
-    required this.child,
     this.bottomNavigationBar,
     this.appTitle,
     required this.appbarPointView,
@@ -25,6 +25,8 @@ class DefaultLayout extends StatelessWidget {
     required this.logoType,
     required this.elevations,
     this.notiButton = false,
+    this.calendarButton = false,
+    required this.child,
     Key? key,
   }) : super(key: key);
 
@@ -109,6 +111,11 @@ class DefaultLayout extends StatelessWidget {
               ),
             ),
       actions: [
+        if(calendarButton)
+          Padding(
+            padding: EdgeInsets.only(right: 16.0),
+            child: CalendarIcon(context),
+          ),
         if(notiButton)
         Padding(
           padding: EdgeInsets.only(right: 13.0),
@@ -120,6 +127,7 @@ class DefaultLayout extends StatelessWidget {
 
   IconButton notiIcon(BuildContext context) {
     return IconButton(
+      padding: EdgeInsets.zero,
       constraints: BoxConstraints(),
       onPressed: () {
         Navigator.of(context).push(
@@ -130,6 +138,21 @@ class DefaultLayout extends StatelessWidget {
       },
       icon: Image.asset(
         'asset/img/icons/noti_new.png',
+        width: 24.0 * getScaleWidth(context),
+        height: 24.0 * getScaleWidth(context),
+      ),
+    );
+  }
+
+  IconButton CalendarIcon(BuildContext context) {
+    return IconButton(
+      padding: EdgeInsets.zero,
+      constraints: BoxConstraints(),
+      onPressed: () {
+        print('달력작동');
+      },
+      icon: Image.asset(
+        'asset/img/icons/calendar_icon.png',
         width: 24.0 * getScaleWidth(context),
         height: 24.0 * getScaleWidth(context),
       ),
