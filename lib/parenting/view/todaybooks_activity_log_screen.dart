@@ -2,6 +2,7 @@ import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
 import 'package:arami/parenting/component/activity_log_card.dart';
+import 'package:arami/parenting/component/activity_log_write_modal.dart';
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 
@@ -84,20 +85,37 @@ class _TodayBooksActivityLogScreenState
         ),
         GestureDetector(
           onTap: () {
-            print('활동지 쓰기 작동');
             setState(() {
               widget.controller.pause();
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ActivityLogWrite(),
+                ),
+              );
+              /*
               showModalBottomSheet(
+                enableDrag: false,
+                shape: const RoundedRectangleBorder(
+                  borderRadius: BorderRadius.only(
+                      topRight: Radius.circular(10.0),
+                      topLeft: Radius.circular(10.0)),
+                ),
                 context: context,
                 useSafeArea: true,
                 isScrollControlled: true,
-                builder: (BuildContext context){
-                  return Container(
-                    height: MediaQuery.of(context).size.height,
-                    color: Colors.blue,
+                isDismissible: false,
+                builder: (BuildContext context) {
+                  return SingleChildScrollView(
+                    child: Padding(
+                      padding: EdgeInsets.only(
+                          bottom: MediaQuery.of(context).viewInsets.bottom),
+                      child: ActivityLogWrite(),
+                    ),
                   );
                 },
               );
+
+               */
             });
           },
           child: SizedBox(
