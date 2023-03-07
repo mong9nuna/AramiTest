@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/function.dart';
@@ -24,6 +26,7 @@ class _ActivityLogCardState extends State<ActivityLogCard> {
   Widget build(BuildContext context) {
     return Container(
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
             padding: EdgeInsets.only(
@@ -74,6 +77,7 @@ class _ActivityLogCardState extends State<ActivityLogCard> {
               ),
             ),
           ),
+          if(widget.item['imgType'] == '1')
           Container(
             height: 160.0 * getScaleWidth(context),
             child: ListView.builder(
@@ -158,6 +162,91 @@ class _ActivityLogCardState extends State<ActivityLogCard> {
               },
             ),
           ),
+          if(widget.item['imgType'] == '2')
+            Container(
+              height: 160.0 * getScaleWidth(context),
+              child: ListView.builder(
+                padding: EdgeInsets.symmetric(
+                    horizontal: 16.0 * getScaleWidth(context)),
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.item['detailImages'].length < 2
+                    ? widget.item['detailImages'].length == 0
+                    ? 0
+                    : 1
+                    : 2,
+                itemBuilder: (BuildContext context, int index2) {
+                  if (index2 == 0 ||
+                      widget.item['detailImages'].length == 2) {
+                    return GestureDetector(
+                      onTap: () {
+                        print('활동일지 이미지 작동');
+                      },
+                      child: Padding(
+                        padding: index2 > 0
+                            ? EdgeInsets.only(left: 8.0 * getScaleWidth(context))
+                            : EdgeInsets.only(left: 0),
+                        child: SizedBox(
+                          width: 160.0 * getScaleWidth(context),
+                          height: 160.0 * getScaleWidth(context),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(4.0),
+                            child: Image.file(
+                              File(widget.item['detailImages'][index2]),
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  } else {
+                    return GestureDetector(
+                      onTap: () {
+                        print('추가이미지 작동');
+                      },
+                      child: Padding(
+                        padding:
+                        EdgeInsets.only(left: 8.0 * getScaleWidth(context)),
+                        child: SizedBox(
+                          width: 160.0 * getScaleWidth(context),
+                          height: 160.0 * getScaleWidth(context),
+                          child: Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(4.0),
+                                child: Image.asset(
+                                  widget.item['detailImages'][index2],
+                                  height: 160.0 * getScaleWidth(context),
+                                  width: 160.0 * getScaleWidth(context),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4.0),
+                                  color: OP50,
+                                ),
+                                width: 160.0 * getScaleWidth(context),
+                                height: 160.0 * getScaleWidth(context),
+                              ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  '+${widget.item['detailImages'].length - 2}',
+                                  style: TITLE1_BOLD.copyWith(
+                                    fontSize: 20.0 * getFontWidth(context),
+                                    color: WHITE,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                },
+              ),
+            ),
           SizedBox(
             height: 8.0 * getScaleWidth(context),
           ),

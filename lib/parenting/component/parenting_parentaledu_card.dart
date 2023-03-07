@@ -9,7 +9,7 @@ class ParentingParentaleduCard extends StatelessWidget {
   final List<Map<String, dynamic>> parentaleduItem = [
     {
       'id': '001',
-      'title': '특집 부모교육 시리즈 1편특집 부모교육 시리즈 1편특집 부모교육 시리즈 1편',
+      'title': '특집 부모교육 시리즈 1편',
       'thumbNail': 'asset/img/sample/parentaledu_sample_1.png',
     },
     {

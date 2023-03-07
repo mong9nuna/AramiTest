@@ -125,6 +125,7 @@ class _ParentingTodayBooksScreenState extends State<ParentingTodayBooksScreen>
                               ),
                             ),
                           ),
+                          /*
                           GestureDetector(
                             onTap: () {
                               print('오늘의 책활동 즐겨찾기 작동');
@@ -153,6 +154,7 @@ class _ParentingTodayBooksScreenState extends State<ParentingTodayBooksScreen>
                               ],
                             ),
                           )
+                          */
                         ],
                       ),
                     ),

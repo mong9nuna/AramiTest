@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
+import 'package:arami/common/const/function.dart';
 import 'package:arami/common/const/size.dart';
 import 'package:arami/common/layout/default_layout.dart';
 import 'package:flutter/material.dart';
@@ -18,20 +19,44 @@ bool saveButtonActive = false;
 int selectItem = 1;
 
 class _ActivityLogWriteState extends State<ActivityLogWrite> {
-  List<String> list = ['Java', 'Flutter', 'Kotlin', 'Swift', 'Objective-C'],
-      selected = [];
+  final Map<String, dynamic> activityLogList =
+    {
+      'id': 'activityLog01',
+      'userID': '아람맘',
+      'date': '2023-02-28 15:00:00',
+      'userImage': 'asset/img/sample/user_sample_1.png',
+      'detail': '엄마 우리 아람이가 자동차를 보면서 네네네!라고 말했다. 감동이다. 벌써 10번째 보는 책 최애책!',
+      'detailImages': [
+        'asset/img/sample/activity_log_sample_1.png',
+        'asset/img/sample/activity_log_sample_2.png',
+        'asset/img/sample/activity_log_sample_1.png',
+        'asset/img/sample/activity_log_sample_2.png',
+        'asset/img/sample/activity_log_sample_2.png'
+      ],
+      'favoriteCount': '3',
+      'tags': [
+        '오늘의 책활동',
+        '베이비올 아기',
+      ],
+    };
+
+  Map<String, dynamic> sendData = {};
+  List<String> selected = [];
   List<dynamic> imageFiles = [];
   late TextEditingController tc;
+  late TextEditingController tc2;
 
   @override
   void initState() {
     tc = TextEditingController();
+    tc2 = TextEditingController();
     super.initState();
   }
 
   @override
   void dispose() {
     tc.clear();
+    tc2.clear();
     super.dispose();
   }
 
@@ -60,7 +85,9 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                       onTap: () {
                         setState(
                           () {
-                            if (saveButtonActive || imageFiles.isNotEmpty || selected.isNotEmpty) {
+                            if (saveButtonActive ||
+                                imageFiles.isNotEmpty ||
+                                selected.isNotEmpty) {
                               _showDialog();
                             } else {
                               saveButtonActive = false;
@@ -88,19 +115,30 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                     SizedBox(
                       width: 68.0 * getScaleWidth(context),
                     ),
-                    Container(
-                      alignment: Alignment.center,
-                      width: 39.0 * getScaleWidth(context),
-                      height: 32.0 * getScaleWidth(context),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(4.0),
-                        color: saveButtonActive ? MAIN_COLOR : LIGHT_BG2,
-                      ),
-                      child: Text(
-                        '저장',
-                        style: BODY1_REGULAR.copyWith(
-                          fontSize: 12.0 * getFontWidth(context),
-                          color: saveButtonActive ? WHITE : GRAY020,
+                    GestureDetector(
+                      onTap: () {
+                        setState(() {
+                          saveButtonActive = false;
+                          Navigator.pop(
+                            context,
+                            _sendData(),
+                          );
+                        });
+                      },
+                      child: Container(
+                        alignment: Alignment.center,
+                        width: 39.0 * getScaleWidth(context),
+                        height: 32.0 * getScaleWidth(context),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(4.0),
+                          color: saveButtonActive ? MAIN_COLOR : LIGHT_BG2,
+                        ),
+                        child: Text(
+                          '저장',
+                          style: BODY1_REGULAR.copyWith(
+                            fontSize: 12.0 * getFontWidth(context),
+                            color: saveButtonActive ? WHITE : GRAY020,
+                          ),
                         ),
                       ),
                     ),
@@ -150,32 +188,40 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                                     width: 78.0 * getScaleWidth(context),
                                     decoration: BoxDecoration(
                                       border: Border.all(
-                                        color: selectItem == 1 ? MAIN_COLOR : OUTLINE,
+                                        color: selectItem == 1
+                                            ? MAIN_COLOR
+                                            : OUTLINE,
                                         width: 2.0,
                                       ),
                                       borderRadius: BorderRadius.circular(4.0),
                                     ),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         if (selectItem == 1)
                                           Padding(
                                             padding: EdgeInsets.only(
-                                              right: 4.0 * getScaleWidth(context),
+                                              right:
+                                                  4.0 * getScaleWidth(context),
                                             ),
                                             child: Icon(
                                               Icons.done,
-                                              weight: 16.0 * getScaleWidth(context),
-                                              size: 16.0 * getScaleWidth(context),
+                                              weight:
+                                                  16.0 * getScaleWidth(context),
+                                              size:
+                                                  16.0 * getScaleWidth(context),
                                               color: MAIN_COLOR,
                                             ),
                                           ),
                                         Text(
                                           '공개',
                                           style: BODY2_BOLD.copyWith(
-                                              fontSize: 14.0 * getFontWidth(context),
-                                              color:
-                                              selectItem == 1 ? MAIN_COLOR : OUTLINE,
+                                              fontSize:
+                                                  14.0 * getFontWidth(context),
+                                              color: selectItem == 1
+                                                  ? MAIN_COLOR
+                                                  : OUTLINE,
                                               height: 1.3),
                                         ),
                                       ],
@@ -188,7 +234,7 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                                 GestureDetector(
                                   onTap: () {
                                     setState(
-                                          () {
+                                      () {
                                         selectItem = 2;
                                       },
                                     );
@@ -198,32 +244,40 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                                     width: 78.0 * getScaleWidth(context),
                                     decoration: BoxDecoration(
                                       border: Border.all(
-                                        color: selectItem == 2 ? MAIN_COLOR : OUTLINE,
+                                        color: selectItem == 2
+                                            ? MAIN_COLOR
+                                            : OUTLINE,
                                         width: 2.0,
                                       ),
                                       borderRadius: BorderRadius.circular(4.0),
                                     ),
                                     child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
                                       children: [
                                         if (selectItem == 2)
                                           Padding(
                                             padding: EdgeInsets.only(
-                                              right: 4.0 * getScaleWidth(context),
+                                              right:
+                                                  4.0 * getScaleWidth(context),
                                             ),
                                             child: Icon(
                                               Icons.done,
-                                              weight: 16.0 * getScaleWidth(context),
-                                              size: 16.0 * getScaleWidth(context),
+                                              weight:
+                                                  16.0 * getScaleWidth(context),
+                                              size:
+                                                  16.0 * getScaleWidth(context),
                                               color: MAIN_COLOR,
                                             ),
                                           ),
                                         Text(
                                           '비공개',
                                           style: BODY2_BOLD.copyWith(
-                                              fontSize: 14.0 * getFontWidth(context),
-                                              color:
-                                              selectItem == 2 ? MAIN_COLOR : GRAY020,
+                                              fontSize:
+                                                  14.0 * getFontWidth(context),
+                                              color: selectItem == 2
+                                                  ? MAIN_COLOR
+                                                  : GRAY020,
                                               height: 1.3),
                                         ),
                                       ],
@@ -281,7 +335,8 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                                       isDense: true,
                                       hintText: '태그 입력',
                                       hintStyle: BODY2_REGULAR.copyWith(
-                                          fontSize: 14.0 * getFontWidth(context),
+                                          fontSize:
+                                              14.0 * getFontWidth(context),
                                           color: GRAY040,
                                           height: 1.2),
                                       focusedBorder: UnderlineInputBorder(
@@ -306,17 +361,20 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                                         height: 30.0 * getScaleWidth(context),
                                         child: Chip(
                                             visualDensity: const VisualDensity(
-                                                horizontal: 0.0, vertical: -2.0),
+                                                horizontal: 0.0,
+                                                vertical: -2.0),
                                             backgroundColor: WHITE,
                                             shape: RoundedRectangleBorder(
-                                              side:
-                                              BorderSide(width: 1.0, color: OUTLINE),
-                                              borderRadius: BorderRadius.circular(4.0),
+                                              side: BorderSide(
+                                                  width: 1.0, color: OUTLINE),
+                                              borderRadius:
+                                                  BorderRadius.circular(4.0),
                                             ),
                                             label: Text(
                                               '# $s',
                                               style: BODY2_REGULAR.copyWith(
-                                                  fontSize: 14.0 * getFontWidth(context),
+                                                  fontSize: 14.0 *
+                                                      getFontWidth(context),
                                                   color: GRAY040,
                                                   height: 1),
                                             ),
@@ -358,7 +416,6 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                               if (imageFiles.length < 5)
                                 GestureDetector(
                                   onTap: () async {
-                                    print(imageFiles.length);
                                     if (imageFiles.length < 5) {
                                       var picker = ImagePicker();
                                       var image = await picker.pickImage(
@@ -369,7 +426,6 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                                         }
                                       });
                                     } else {
-                                      print('실행');
                                       _showDialog();
                                     }
                                   },
@@ -377,15 +433,18 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                                     width: 80.0 * getScaleWidth(context),
                                     height: 80.0 * getScaleWidth(context),
                                     decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(4.0),
+                                        borderRadius:
+                                            BorderRadius.circular(4.0),
                                         color: LIGHT_BG2),
                                     child: Stack(
                                       children: [
                                         Align(
                                           alignment: Alignment.center,
                                           child: SizedBox(
-                                            width: 24.0 * getScaleWidth(context),
-                                            height: 24.0 * getScaleWidth(context),
+                                            width:
+                                                24.0 * getScaleWidth(context),
+                                            height:
+                                                24.0 * getScaleWidth(context),
                                             child: Image.asset(
                                                 'asset/img/icons/activity_log_img_add.png'),
                                           ),
@@ -404,15 +463,19 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                                       width: 80.0 * getScaleWidth(context),
                                       height: 80.0 * getScaleWidth(context),
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(4.0),
+                                          borderRadius:
+                                              BorderRadius.circular(4.0),
                                           color: LIGHT_BG2),
                                       child: Stack(
                                         children: [
                                           SizedBox(
-                                            width: 80.0 * getScaleWidth(context),
-                                            height: 80.0 * getScaleWidth(context),
+                                            width:
+                                                80.0 * getScaleWidth(context),
+                                            height:
+                                                80.0 * getScaleWidth(context),
                                             child: ClipRRect(
-                                              borderRadius: BorderRadius.circular(4.0),
+                                              borderRadius:
+                                                  BorderRadius.circular(4.0),
                                               child: Image.file(
                                                 File(s.path),
                                                 fit: BoxFit.fill,
@@ -421,7 +484,8 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                                           ),
                                           Padding(
                                             padding: EdgeInsets.only(
-                                              right: 2.0 * getScaleWidth(context),
+                                              right:
+                                                  2.0 * getScaleWidth(context),
                                               top: 2.0 * getScaleWidth(context),
                                             ),
                                             child: Align(
@@ -440,19 +504,21 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                                                       BoxShadow(
                                                         blurRadius: 20.0,
                                                         offset: Offset(0, 8.0),
-                                                        color:
-                                                        Color.fromRGBO(0, 0, 0, 0.1),
+                                                        color: Color.fromRGBO(
+                                                            0, 0, 0, 0.1),
                                                       ),
                                                       BoxShadow(
                                                         blurRadius: 8.0,
                                                         offset: Offset(0, 2.0),
-                                                        color:
-                                                        Color.fromRGBO(0, 0, 0, 0.1),
+                                                        color: Color.fromRGBO(
+                                                            0, 0, 0, 0.1),
                                                       ),
                                                     ],
                                                   ),
-                                                  width: 24.0 * getScaleWidth(context),
-                                                  height: 24.0 * getScaleWidth(context),
+                                                  width: 24.0 *
+                                                      getScaleWidth(context),
+                                                  height: 24.0 *
+                                                      getScaleWidth(context),
                                                   child: Icon(
                                                     Icons.close,
                                                     color: GRAY020,
@@ -494,9 +560,10 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                               height: 8.0 * getScaleWidth(context),
                             ),
                             TextFormField(
+                              controller: tc2,
                               onChanged: (value) {
                                 setState(
-                                      () {
+                                  () {
                                     if (value.length > 1) {
                                       saveButtonActive = true;
                                     } else {
@@ -644,5 +711,22 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
         );
       },
     );
+  }
+
+  Map<String, dynamic> _sendData(){
+    var images = [];
+    for(int i = 0; i < imageFiles.length; i++){
+      images.add(imageFiles[i].path);
+    }
+    sendData['id'] = 'activityLog03';
+    sendData['userID'] = '아람관리자';
+    sendData['userImage'] = 'asset/img/sample/user_sample_1.png';
+    sendData['date'] = getToday();
+    sendData['detail'] = tc2.text;
+    sendData['detailImages'] = images;
+    sendData['imgType'] = '2';
+    sendData['favoriteCount'] = 0;
+    sendData['tags'] = selected;
+    return sendData;
   }
 }

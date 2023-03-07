@@ -4,6 +4,7 @@ import 'package:arami/common/const/size.dart';
 import 'package:arami/parenting/component/activity_log_card.dart';
 import 'package:arami/parenting/component/activity_log_write_modal.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:video_player/video_player.dart';
 
 import '../../common/const/function.dart';
@@ -25,46 +26,49 @@ class _TodayBooksActivityLogScreenState
     extends State<TodayBooksActivityLogScreen> {
   String updateList = 'new';
 
+  final List<Map<String, dynamic>> activityLogList = [
+    {
+      'id': 'activityLog01',
+      'userID': '아람맘',
+      'date': '2023-02-28 15:00:00',
+      'userImage': 'asset/img/sample/user_sample_1.png',
+      'detail': '엄마 우리 아람이가 자동차를 보면서 네네네!라고 말했다. 감동이다. 벌써 10번째 보는 책 최애책!',
+      'imgType' : '1',
+      'detailImages': [
+        'asset/img/sample/activity_log_sample_1.png',
+        'asset/img/sample/activity_log_sample_2.png',
+        'asset/img/sample/activity_log_sample_1.png',
+        'asset/img/sample/activity_log_sample_2.png',
+        'asset/img/sample/activity_log_sample_2.png'
+      ],
+      'favoriteCount': '3',
+      'tags': [
+        '오늘의 책활동',
+        '베이비올 아기',
+      ],
+    },
+    {
+      'id': 'activityLog02',
+      'userID': '아람파더',
+      'date': '2022-02-23 15:00:00',
+      'userImage': 'asset/img/sample/user_sample_1.png',
+      'detail': '아빠 우리 아람이가 자동차를 보면서 네네네!라고 말했다. 감동이다. 벌써 10번째 보는 책 최애책!',
+      'imgType' : '1',
+      'detailImages': [
+        'asset/img/sample/activity_log_sample_1.png',
+        'asset/img/sample/activity_log_sample_2.png',
+        'asset/img/sample/activity_log_sample_1.png',
+      ],
+      'favoriteCount': '1',
+      'tags': [
+        '오늘의 책활동',
+        '베이비올 영어',
+      ],
+    },
+  ];
+
   @override
   Widget build(BuildContext context) {
-    final List<Map<String, dynamic>> activityLogList = [
-      {
-        'id': 'activityLog01',
-        'userID': '아람맘',
-        'date': '2023-02-28 15:00:00',
-        'userImage': 'asset/img/sample/user_sample_1.png',
-        'detail': '엄마 우리 아람이가 자동차를 보면서 네네네!라고 말했다. 감동이다. 벌써 10번째 보는 책 최애책!',
-        'detailImages': [
-          'asset/img/sample/activity_log_sample_1.png',
-          'asset/img/sample/activity_log_sample_2.png',
-          'asset/img/sample/activity_log_sample_1.png',
-          'asset/img/sample/activity_log_sample_2.png',
-          'asset/img/sample/activity_log_sample_2.png'
-        ],
-        'favoriteCount': '3',
-        'tags': [
-          '오늘의 책활동',
-          '베이비올 아기',
-        ],
-      },
-      {
-        'id': 'activityLog02',
-        'userID': '아람파더',
-        'date': '2022-02-23 15:00:00',
-        'userImage': 'asset/img/sample/user_sample_1.png',
-        'detail': '아빠 우리 아람이가 자동차를 보면서 네네네!라고 말했다. 감동이다. 벌써 10번째 보는 책 최애책!',
-        'detailImages': [
-          'asset/img/sample/activity_log_sample_1.png',
-          'asset/img/sample/activity_log_sample_2.png',
-          'asset/img/sample/activity_log_sample_1.png',
-        ],
-        'favoriteCount': '1',
-        'tags': [
-          '오늘의 책활동',
-          '베이비올 영어',
-        ],
-      },
-    ];
 
     String count = '240';
 
@@ -87,11 +91,7 @@ class _TodayBooksActivityLogScreenState
           onTap: () {
             setState(() {
               widget.controller.pause();
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => ActivityLogWrite(),
-                ),
-              );
+              activityLog(context);
               /*
               showModalBottomSheet(
                 enableDrag: false,
@@ -231,6 +231,7 @@ class _TodayBooksActivityLogScreenState
           shrinkWrap: true,
           itemCount: activityLogList.length,
           itemBuilder: (BuildContext context, int index) {
+            print(activityLogList[index]);
             return ActivityLogCard(
               item: activityLogList[index],
             );
@@ -238,5 +239,14 @@ class _TodayBooksActivityLogScreenState
         ),
       ],
     );
+  }
+
+  Future activityLog(context) async {
+    final result = await Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => ActivityLogWrite(),
+      ),
+    );
+    activityLogList.insert(0, result);
   }
 }

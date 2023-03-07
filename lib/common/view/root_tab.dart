@@ -3,6 +3,7 @@ import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
 import 'package:arami/common/layout/default_layout.dart';
 import 'package:arami/home/view/home_screen.dart';
+import 'package:arami/library/view/library_main_screen.dart';
 import 'package:arami/parenting/view/parenting_main_screen.dart';
 import 'package:flutter/material.dart';
 
@@ -122,11 +123,7 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
         children: [
           const HomeScreen(),
           const ParentingMainScreen(),
-          Center(
-            child: Container(
-              child: Text('라이브러리'),
-            ),
-          ),
+          const LibraryMainScreen(),
           Center(
             child: Container(
               child: Text('마이페이지'),

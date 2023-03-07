@@ -107,6 +107,7 @@ class _TodayBooksCardState extends State<TodayBooksCard> {
                     ),
                   ),
                 ),
+                /*
                 GestureDetector(
                   onTap: () {
                     print('오늘의 책활동 즐겨찾기 작동');
@@ -132,6 +133,7 @@ class _TodayBooksCardState extends State<TodayBooksCard> {
                     ],
                   ),
                 )
+                */
               ],
             ),
           ),

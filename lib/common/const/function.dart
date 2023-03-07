@@ -33,3 +33,10 @@ String TimeCount2(String time) {
     }
   }
 }
+
+String getToday() {
+  DateTime now = DateTime.now();
+  DateFormat formatter = DateFormat('yyyy-MM-dd hh:mm:ss');
+  var strToday = formatter.format(now);
+  return strToday;
+}
