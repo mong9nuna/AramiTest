@@ -4,7 +4,6 @@ import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
 import 'package:arami/common/layout/default_layout.dart';
 import 'package:arami/library/component/library_item_card.dart';
-import 'package:arami/parenting/component/activity_log_write_modal.dart';
 import 'package:flutter/material.dart';
 
 class LibraryMainScreen extends StatefulWidget {
@@ -422,7 +421,6 @@ class _LibraryMainScreenState extends State<LibraryMainScreen>
         _scrollController.animateTo(0, duration: const Duration(milliseconds: 500), curve: Curves.ease);
       });
     }
-
 
     List<Widget> tabs = [
       Tab(
