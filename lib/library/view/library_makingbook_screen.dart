@@ -26,6 +26,7 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
   int pageIndex = 1;
   List<Map<String, dynamic>> containers = [];
   List<TextEditingController> tcList = [];
+  int num = 0;
   final Map<String, dynamic> makingBookItem = {
     'id': 'makingBook1',
     'title': '참 똑똑한 사회씨',
@@ -48,7 +49,7 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
     tcList.add(tc);
     Map<String, dynamic> items = {};
     items['index'] = index;
-    String textID = 'text${containers.length}';
+    String textID = 'text${num++}';
     items['textID'] = textID;
     setState(
       () {
@@ -58,6 +59,7 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
           child: Container(
             child: Focus(
               child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   GestureDetector(
                     onTap: () {
@@ -72,7 +74,10 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
                     },
                     child: Visibility(
                       visible: FocusScope.of(context).canRequestFocus,
-                      child: Icon(Icons.close),
+                      child: const Padding(
+                        padding: EdgeInsets.symmetric(vertical: 4.0),
+                        child: Icon(Icons.close, size: 16.0,),
+                      ),
                     ),
                   ),
                   IntrinsicWidth(
@@ -87,20 +92,18 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
                       },
                       cursorColor: GRAY090,
                       decoration: InputDecoration(
+                        hintText: '텍스트를 입력해주세요.',
+                        hintStyle: BODY2_REGULAR.copyWith(
+                          fontSize: 14.0,
+                          color: GRAY040,
+                          height: 1.5,
+                        ),
+                        filled: true,
+                        fillColor: Color(0x80FFFFFF),
                         contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
                         isDense: true,
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                          borderSide: BorderSide(
-                            color: OUTLINE,
-                          ),
-                        ),
-                        focusedBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(4.0),
-                          borderSide: BorderSide(
-                            color: OUTLINE,
-                          ),
-                        ),
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
                       ),
                     ),
                   ),
@@ -400,12 +403,14 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
                                         height: 1),
                                   ),
                                 if (inputMode)
-                                  Text(
-                                    '영역을 터치해주세요.',
-                                    style: BODY3_BOLD.copyWith(
-                                        fontSize: 16.0 * getFontWidth(context),
-                                        color: WHITE,
-                                        height: 1),
+                                  GestureDetector(
+                                    child: Text(
+                                      '영역을 터치해주세요.',
+                                      style: BODY3_BOLD.copyWith(
+                                          fontSize: 16.0 * getFontWidth(context),
+                                          color: WHITE,
+                                          height: 1),
+                                    ),
                                   ),
                               ],
                             ),
