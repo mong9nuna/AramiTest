@@ -385,8 +385,19 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
     );
   }
 
-  Widget AudioBookInput(){
-    return Container();
+  Widget AudioBookInput() {
+    return Row(
+      children: [
+        SizedBox(
+          height: 60.0 * getScaleWidth(context),
+          width: 60.0 * getScaleWidth(context),
+          child: Icon(
+            Icons.record_voice_over_outlined,
+            color: GRAY060,
+          ),
+        ),
+      ],
+    );
   }
 
   Padding TextBookInput() {
@@ -446,4 +457,3 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
   }
 }
 
-class AudioBookInput {}
