@@ -58,8 +58,7 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
         Widget item = Positioned(
           top: dy,
           left: dx,
-          child:
-          Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               //if(checkShow())
@@ -76,14 +75,17 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
                 },
                 child: const Padding(
                   padding: EdgeInsets.symmetric(vertical: 4.0),
-                  child: Icon(Icons.close, size: 16.0,),
+                  child: Icon(
+                    Icons.close,
+                    size: 16.0,
+                  ),
                 ),
               ),
               IntrinsicWidth(
                 child: TextField(
-                  onTap: (){
+                  onTap: () {
                     for (var element in containers) {
-                      if(element['textID'] == textID){
+                      if (element['textID'] == textID) {
                         setState(() {
                           element['showIcons'] = false;
                           print(element);
@@ -120,7 +122,7 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
     );
   }
 
-  bool checkShow(String textID){
+  bool checkShow(String textID) {
     return true;
   }
 
@@ -370,59 +372,8 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
                           ),
                         ),
                       ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 16.0 * getScaleWidth(context),
-                        ),
-                        child: InkWell(
-                          onTap: () {
-                            setState(() {
-                              inputMode = true;
-                            });
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(8.0),
-                              color: MAIN_COLOR,
-                            ),
-                            height: 56.0 * getScaleWidth(context),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                SizedBox(
-                                  height: 24.0 * getScaleWidth(context),
-                                  width: 24.0 * getScaleWidth(context),
-                                  child: Icon(
-                                    Icons.title_rounded,
-                                    color: WHITE,
-                                  ),
-                                ),
-                                SizedBox(
-                                  width: 8.0 * getScaleWidth(context),
-                                ),
-                                if (inputMode == false)
-                                  Text(
-                                    '입력하기',
-                                    style: BODY3_BOLD.copyWith(
-                                        fontSize: 16.0 * getFontWidth(context),
-                                        color: WHITE,
-                                        height: 1),
-                                  ),
-                                if (inputMode)
-                                  GestureDetector(
-                                    child: Text(
-                                      '영역을 터치해주세요.',
-                                      style: BODY3_BOLD.copyWith(
-                                          fontSize: 16.0 * getFontWidth(context),
-                                          color: WHITE,
-                                          height: 1),
-                                    ),
-                                  ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
+                      if (widget.makingType == 1) AudioBookInput(),
+                      if (widget.makingType == 2) TextBookInput(),
                     ],
                   ),
                 ),
@@ -433,4 +384,66 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
       ),
     );
   }
+
+  Widget AudioBookInput(){
+    return Container();
+  }
+
+  Padding TextBookInput() {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        horizontal: 16.0 * getScaleWidth(context),
+      ),
+      child: InkWell(
+        onTap: () {
+          setState(() {
+            inputMode = true;
+          });
+        },
+        child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(8.0),
+            color: MAIN_COLOR,
+          ),
+          height: 56.0 * getScaleWidth(context),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                height: 24.0 * getScaleWidth(context),
+                width: 24.0 * getScaleWidth(context),
+                child: Icon(
+                  Icons.title_rounded,
+                  color: WHITE,
+                ),
+              ),
+              SizedBox(
+                width: 8.0 * getScaleWidth(context),
+              ),
+              if (inputMode == false)
+                Text(
+                  '입력하기',
+                  style: BODY3_BOLD.copyWith(
+                      fontSize: 16.0 * getFontWidth(context),
+                      color: WHITE,
+                      height: 1),
+                ),
+              if (inputMode)
+                GestureDetector(
+                  child: Text(
+                    '영역을 터치해주세요.',
+                    style: BODY3_BOLD.copyWith(
+                        fontSize: 16.0 * getFontWidth(context),
+                        color: WHITE,
+                        height: 1),
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
 }
+
+class AudioBookInput {}
