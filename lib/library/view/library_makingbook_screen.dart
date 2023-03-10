@@ -51,71 +51,77 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
     items['index'] = index;
     String textID = 'text${num++}';
     items['textID'] = textID;
+    bool showIcons = true;
+    items['showIcons'] = showIcons;
     setState(
       () {
         Widget item = Positioned(
           top: dy,
           left: dx,
-          child: Container(
-            child: Focus(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        containers.removeWhere(
-                          (element) {
-                            return element['textID'] == textID;
-                          },
-                        );
-                        print(containers);
-                      });
-                    },
-                    child: Visibility(
-                      visible: FocusScope.of(context).canRequestFocus,
-                      child: const Padding(
-                        padding: EdgeInsets.symmetric(vertical: 4.0),
-                        child: Icon(Icons.close, size: 16.0,),
-                      ),
-                    ),
-                  ),
-                  IntrinsicWidth(
-                    child: TextFormField(
-                      controller: tc,
-                      keyboardType: TextInputType.multiline,
-                      maxLines: null,
-                      onChanged: (value) {
-                        setState(
-                          () {},
-                        );
+          child:
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              //if(checkShow())
+              GestureDetector(
+                onTap: () {
+                  setState(() {
+                    containers.removeWhere(
+                      (element) {
+                        return element['textID'] == textID;
                       },
-                      cursorColor: GRAY090,
-                      decoration: InputDecoration(
-                        hintText: '텍스트를 입력해주세요.',
-                        hintStyle: BODY2_REGULAR.copyWith(
-                          fontSize: 14.0,
-                          color: GRAY040,
-                          height: 1.5,
-                        ),
-                        filled: true,
-                        fillColor: Color(0x80FFFFFF),
-                        contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
-                        isDense: true,
-                        enabledBorder: InputBorder.none,
-                        focusedBorder: InputBorder.none,
-                      ),
-                    ),
-                  ),
-                ],
+                    );
+                    print(containers);
+                  });
+                },
+                child: const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 4.0),
+                  child: Icon(Icons.close, size: 16.0,),
+                ),
               ),
-            ),
+              IntrinsicWidth(
+                child: TextField(
+                  onTap: (){
+                    for (var element in containers) {
+                      if(element['textID'] == textID){
+                        setState(() {
+                          element['showIcons'] = false;
+                          print(element);
+                        });
+                      }
+                    }
+                  },
+                  controller: tc,
+                  keyboardType: TextInputType.multiline,
+                  maxLines: null,
+                  cursorColor: GRAY090,
+                  decoration: InputDecoration(
+                    hintText: '텍스트를 입력해주세요.',
+                    hintStyle: BODY2_REGULAR.copyWith(
+                      fontSize: 14.0,
+                      color: GRAY040,
+                      height: 1.5,
+                    ),
+                    filled: true,
+                    fillColor: Color(0x80FFFFFF),
+                    contentPadding: EdgeInsets.symmetric(horizontal: 10.0),
+                    isDense: true,
+                    enabledBorder: InputBorder.none,
+                    focusedBorder: InputBorder.none,
+                  ),
+                ),
+              ),
+            ],
           ),
         );
         items['item'] = item;
         containers.add(items);
       },
     );
+  }
+
+  bool checkShow(String textID){
+    return true;
   }
 
   @override
@@ -416,7 +422,7 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
                             ),
                           ),
                         ),
-                      )
+                      ),
                     ],
                   ),
                 ),

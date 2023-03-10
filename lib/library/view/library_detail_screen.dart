@@ -512,7 +512,7 @@ class _LibraryDetailScreenState extends State<LibraryDetailScreen>
                                 width: 8.0 * getScaleWidth(context),
                               ),
                               Text(
-                                '텍스트 만들기',
+                                '텍스트북 만들기',
                                 style: BODY3_BOLD.copyWith(
                                   fontSize: 16.0 * getFontWidth(context),
                                   color: MAIN_COLOR,
