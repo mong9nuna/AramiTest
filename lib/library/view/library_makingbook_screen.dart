@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
@@ -21,7 +23,14 @@ class LibraryMakingBooksScreen extends StatefulWidget {
 bool saveButtonActive = false;
 
 class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
+  int _minutes = 0;
+  int _seconds = 0;
+  late Timer _Timer;
+
   bool inputMode = false;
+  bool audioMode = false;
+  bool changeMode = false;
+
   late PageController pageController;
   int pageIndex = 1;
   List<Map<String, dynamic>> containers = [];
@@ -386,17 +395,116 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
   }
 
   Widget AudioBookInput() {
-    return Row(
-      children: [
-        SizedBox(
-          height: 60.0 * getScaleWidth(context),
-          width: 60.0 * getScaleWidth(context),
-          child: Icon(
-            Icons.record_voice_over_outlined,
-            color: GRAY060,
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: 24.0 * getScaleWidth(context),
+      ),
+      child: Column(
+        children: [
+          Padding(
+            padding: EdgeInsets.only(
+              bottom: 16.0 * getScaleWidth(context),
+            ),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text(
+                  _minutes <= 9 ? _minutes.toString().padLeft(2 , '0') : _minutes.toString().padLeft(2 , ''),
+                  style: TITLE2_BOLD.copyWith(
+                      fontSize: 24.0 * getFontWidth(context),
+                      color: GRAY090,
+                      height: 1),
+                ),
+                Text(
+                  ':',
+                  style: TITLE2_BOLD.copyWith(
+                      fontSize: 24.0 * getFontWidth(context),
+                      color: GRAY090,
+                      height: 1),
+                ),
+                Text(
+                  _seconds <= 9 ? _seconds.toString().padLeft(2 , '0') : _seconds.toString().padLeft(2 , ''),
+                  style: TITLE2_BOLD.copyWith(
+                      fontSize: 24.0 * getFontWidth(context),
+                      color: GRAY090,
+                      height: 1),
+                ),
+              ],
+            ),
+            // child: Center(
+            //   child: Text(
+            //     '$_minutes : $_seconds',
+            //     style: TITLE2_BOLD.copyWith(
+            //         fontSize: 24.0 * getFontWidth(context),
+            //         color: GRAY090,
+            //         height: 1),
+            //   ),
+            // ),
           ),
-        ),
-      ],
+          Container(
+            width: 168.0 * getScaleWidth(context),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      audioMode = true;
+                      if (changeMode) {
+                        _ResetTimer();
+                        changeMode = false;
+                      } else {
+                        _StartTimer();
+                      }
+                    });
+                  },
+                  child: Container(
+                    height: 60.0 * getScaleWidth(context),
+                    width: 60.0 * getScaleWidth(context),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        30.0 * getScaleWidth(context),
+                      ),
+                      color: MAIN_COLOR,
+                    ),
+                    child: Icon(
+                      changeMode
+                          ? Icons.keyboard_return_rounded
+                          : Icons.keyboard_voice_rounded,
+                      size: 24.0,
+                      color: WHITE,
+                    ),
+                  ),
+                ),
+                GestureDetector(
+                  onTap: () {
+                    setState(() {
+                      audioMode;
+                      changeMode = true;
+                      _StopTimer();
+                    });
+                  },
+                  child: Container(
+                    height: 60.0 * getScaleWidth(context),
+                    width: 60.0 * getScaleWidth(context),
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(
+                        30.0 * getScaleWidth(context),
+                      ),
+                      color: MAIN_COLOR,
+                    ),
+                    child: Icon(
+                      changeMode ? Icons.play_arrow_rounded : Icons.stop,
+                      size: 24.0,
+                      color: WHITE,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
     );
   }
 
@@ -455,5 +563,36 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
       ),
     );
   }
-}
 
+  void _StartTimer() {
+    audioMode = true;
+    _Timer = Timer.periodic(
+      Duration(
+        seconds: 1,
+      ),
+      (timer) {
+        setState(() {
+          _seconds++;
+          if (_seconds == 60) {
+            _seconds = 0;
+            _minutes += 1;
+          }
+          if (_minutes == 1) {
+            _StopTimer();
+          }
+        });
+      },
+    );
+  }
+
+  void _StopTimer() {
+    _Timer.cancel();
+  }
+
+  void _ResetTimer() {
+    setState(() {
+      _minutes = 0;
+      _seconds = 0;
+    });
+  }
+}
