@@ -149,6 +149,7 @@ class _LibraryDetailScreenState extends State<LibraryDetailScreen>
       child: SingleChildScrollView(
         controller: _scrollController,
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Padding(
               padding: EdgeInsets.all(
@@ -387,10 +388,10 @@ class _LibraryDetailScreenState extends State<LibraryDetailScreen>
 
   Widget _getTabAtIndex(int index) {
     var list = [
-      Container(child: LibraryDetailAllbooksScreen()),
-      Container(child: LibraryDetailReadingScreen()),
-      Container(child: LibraryDetailLinkedScreen()),
-      Container(child: LibraryDetailActivityLogScreen()),
+      LibraryDetailAllbooksScreen(),
+      LibraryDetailReadingScreen(),
+      LibraryDetailLinkedScreen(),
+      LibraryDetailActivityLogScreen(),
     ];
     return list[index];
   }
