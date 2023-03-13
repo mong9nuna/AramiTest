@@ -38,8 +38,8 @@ class _LibraryMainScreenState extends State<LibraryMainScreen>
               'title': '돈이 뭐예요?',
             },
             {
-              'thumbNail': 'asset/img/sample/free_content_2.png',
-              'title': '만약 물이 없다면?',
+              'thumbNail': 'asset/img/sample/free_content_3.jpg',
+              'title': '나는야 뿡뿡 변기',
             },
             {
               'thumbNail': 'asset/img/sample/free_content_1.png',

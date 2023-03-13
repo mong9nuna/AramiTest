@@ -6,6 +6,7 @@ import 'package:arami/library/view/library_detail_activity_log_screen.dart';
 import 'package:arami/library/view/library_detail_allbooks_screen.dart';
 import 'package:arami/library/view/library_detail_linked_screen.dart';
 import 'package:arami/library/view/library_detail_reading_screen.dart';
+import 'package:arami/parenting/view/todaybooks_activity_log_screen.dart';
 import 'package:flutter/material.dart';
 
 import 'library_makingbook_screen.dart';
@@ -374,7 +375,7 @@ class _LibraryDetailScreenState extends State<LibraryDetailScreen>
                 onTap: (value) {
                   setState(() {
                     tabIndex = tabController.index;
-                    _scrollToTop();
+                    //_scrollToTop();
                   });
                 },
               ),
@@ -391,7 +392,7 @@ class _LibraryDetailScreenState extends State<LibraryDetailScreen>
       LibraryDetailAllbooksScreen(),
       LibraryDetailReadingScreen(),
       LibraryDetailLinkedScreen(),
-      LibraryDetailActivityLogScreen(),
+      TodayBooksActivityLogScreen(),
     ];
     return list[index];
   }

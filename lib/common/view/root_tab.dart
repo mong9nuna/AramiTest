@@ -19,6 +19,17 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
   String appTitle = '';
   late TabController controller;
   int index = 0;
+  List<Image> IconsImages = [
+    Image.asset('asset/img/icons/home_default_icon.png'),
+    Image.asset('asset/img/icons/home_active_icon.png'),
+    Image.asset('asset/img/icons/home_active_icon.png'),
+    Image.asset('asset/img/icons/parenting_default_icon.png'),
+    Image.asset('asset/img/icons/parenting_active_icon.png'),
+    Image.asset('asset/img/icons/library_default_icon.png'),
+    Image.asset('asset/img/icons/library_active_icon.png'),
+    Image.asset('asset/img/icons/mypage_default_icon.png'),
+    Image.asset('asset/img/icons/mypage_active_icon.png'),
+  ];
 
   @override
   void initState() {
@@ -26,7 +37,13 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
     controller = TabController(length: 4, vsync: this);
     controller.addListener(tabListener);
   }
-
+@override
+  void didChangeDependencies() {
+  for(int i = 0; i < IconsImages.length; i++){
+    precacheImage(IconsImages[i].image, context);
+  }
+    super.didChangeDependencies();
+  }
   @override
   void dispose() {
     controller.removeListener(tabListener);
@@ -35,9 +52,9 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
 
   void tabListener() {
     setState(
-          () {
+      () {
         index = controller.index;
-      /*
+        /*
         if (index != 0) {
           logoListener = false;
           switch(index) {

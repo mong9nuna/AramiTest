@@ -10,10 +10,10 @@ import 'package:video_player/video_player.dart';
 import '../../common/const/function.dart';
 
 class TodayBooksActivityLogScreen extends StatefulWidget {
-  final VideoPlayerController controller;
+  final VideoPlayerController? controller;
 
   const TodayBooksActivityLogScreen({
-    required this.controller,
+    this.controller,
     Key? key,
   }) : super(key: key);
 
@@ -90,7 +90,9 @@ class _TodayBooksActivityLogScreenState
         GestureDetector(
           onTap: () {
             setState(() {
-              widget.controller.pause();
+              if(widget.controller != null){
+                widget.controller?.pause();
+              }
               activityLog(context);
               /*
               showModalBottomSheet(

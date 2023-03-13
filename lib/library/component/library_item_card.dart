@@ -7,10 +7,17 @@ import 'package:flutter/material.dart';
 class LibraryItemCard extends StatelessWidget {
   final Map<String, dynamic> itemList;
 
-  const LibraryItemCard({
+  LibraryItemCard({
     required this.itemList,
     Key? key,
   }) : super(key: key);
+
+  List<Image> nextPageImages = [
+    Image.asset('asset/img/sample/free_content_5.jpg'),
+    Image.asset('asset/img/sample/free_content_4.jpg'),
+    Image.asset('asset/img/sample/free_content_7.jpg'),
+    Image.asset('asset/img/sample/free_content_8.jpg'),
+  ];
 
   @override
   Widget build(BuildContext context) {
@@ -93,6 +100,10 @@ class LibraryItemCard extends StatelessWidget {
                   ),
                   child: GestureDetector(
                     onTap: (){
+                      // 라이브러리 상세이지 연계독서에 쓸 이미지 미리로딩..
+                      for(int i = 0; i < nextPageImages.length; i++){
+                        precacheImage(nextPageImages[i].image, context);
+                      }
                       Navigator.of(context).push(
                         MaterialPageRoute(
                           builder: (context) => LibraryDetailScreen(),

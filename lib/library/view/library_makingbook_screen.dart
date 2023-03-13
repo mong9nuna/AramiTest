@@ -213,13 +213,13 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
                           height: 32.0 * getScaleWidth(context),
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(4.0),
-                            color: saveButtonActive ? MAIN_COLOR : LIGHT_BG2,
+                            color: changeMode ? MAIN_COLOR : LIGHT_BG2,
                           ),
                           child: Text(
                             '저장',
                             style: BODY1_REGULAR.copyWith(
                               fontSize: 12.0 * getFontWidth(context),
-                              color: saveButtonActive ? WHITE : GRAY020,
+                              color: changeMode ? WHITE : GRAY020,
                             ),
                           ),
                         ),
@@ -444,17 +444,21 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
           Container(
             width: 168.0 * getScaleWidth(context),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: changeMode ? MainAxisAlignment.spaceBetween : MainAxisAlignment.center,
               children: [
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      audioMode = true;
-                      if (changeMode) {
-                        _ResetTimer();
-                        changeMode = false;
-                      } else {
+                      if(audioMode){
+                        if(changeMode){
+                          _ResetTimer();
+                          changeMode = false;
+                        }
+                        changeMode = true;
+                        _StopTimer();
+                      }else{
                         _StartTimer();
+                        audioMode = true;
                       }
                     });
                   },
@@ -469,19 +473,21 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
                     ),
                     child: Icon(
                       changeMode
-                          ? Icons.keyboard_return_rounded
-                          : Icons.keyboard_voice_rounded,
+                          ? Icons.replay
+                          : audioMode ? Icons.stop_circle_outlined : Icons.keyboard_voice_rounded ,
                       size: 24.0,
                       color: WHITE,
                     ),
                   ),
                 ),
+                if(changeMode == true)
                 GestureDetector(
                   onTap: () {
                     setState(() {
-                      audioMode;
-                      changeMode = true;
-                      _StopTimer();
+                      if(changeMode){
+                        _ResetTimer();
+                        _StartTimer();
+                      }
                     });
                   },
                   child: Container(
@@ -494,7 +500,7 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
                       color: MAIN_COLOR,
                     ),
                     child: Icon(
-                      changeMode ? Icons.play_arrow_rounded : Icons.stop,
+                      Icons.play_circle_outline,
                       size: 24.0,
                       color: WHITE,
                     ),
@@ -565,7 +571,6 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
   }
 
   void _StartTimer() {
-    audioMode = true;
     _Timer = Timer.periodic(
       Duration(
         seconds: 1,
