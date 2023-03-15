@@ -22,7 +22,6 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
   List<Image> IconsImages = [
     Image.asset('asset/img/icons/home_default_icon.png'),
     Image.asset('asset/img/icons/home_active_icon.png'),
-    Image.asset('asset/img/icons/home_active_icon.png'),
     Image.asset('asset/img/icons/parenting_default_icon.png'),
     Image.asset('asset/img/icons/parenting_active_icon.png'),
     Image.asset('asset/img/icons/library_default_icon.png'),

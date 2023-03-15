@@ -31,7 +31,7 @@ class _LibraryDetailReadingScreenState
       'mainTitle': '아이와 함께 장난감을_2',
       'date': '2023-01-09',
       'file': 'https://www.arambooks.com/upload/testpdf.pdf',
-      'originFileName': '활동지',
+      'originFileName': '활동지2',
       'download': 'false',
       'innerFilePath' : '',
     },
