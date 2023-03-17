@@ -1,3 +1,4 @@
+import 'package:arami/common/component/custom_download_dialog.dart';
 import 'package:arami/common/component/custom_video_player.dart';
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
@@ -21,7 +22,13 @@ class _ParentingTodayBooksScreenState extends State<ParentingTodayBooksScreen>
   Map<String, dynamic> todayBooksItem = {
     'title': '아이와 함께 장난감을 가지고 의사소통을 시작해보세요.',
     'date': '2023-01-09',
-    'file' : 'asset/video/todaybooks_sample_video.mp4',
+    'videoFile' : 'asset/video/todaybooks_sample_video.mp4',
+    'id': 'file01',
+    'mainTitle': '오늘의 책활동 Sample',
+    'file': 'https://www.arambooks.com/upload/activitybook_1.pdf',
+    'originFileName': '활동지',
+    'download': 'false',
+    'innerFilePath' : '',
     'tags': [
       '전집',
       '의사소통',
@@ -42,7 +49,7 @@ class _ParentingTodayBooksScreenState extends State<ParentingTodayBooksScreen>
 
   @override
   void initState() {
-    controller = VideoPlayerController.asset(todayBooksItem['file']);
+    controller = VideoPlayerController.asset(todayBooksItem['videoFile']);
     tabController = TabController(initialIndex: 0, length: 2, vsync: this);
     super.initState();
   }
@@ -256,7 +263,15 @@ class _ParentingTodayBooksScreenState extends State<ParentingTodayBooksScreen>
                           ),
                           GestureDetector(
                             onTap: () {
-                              print('활동지 다운로드 작동');
+                              showDialog(
+                                  context: context,
+                                  builder: (BuildContext context) {
+                                    List<Map<String, dynamic>> itemList = [];
+                                    itemList.add(todayBooksItem);
+                                    return CustomDownloadDialog(
+                                      itemList: itemList,
+                                    );
+                                  });
                             },
                             child: Container(
                               padding: EdgeInsets.symmetric(
