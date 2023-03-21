@@ -4,7 +4,6 @@ import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
 import 'package:arami/home/view/noti_main_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 
 class DefaultLayout extends StatefulWidget {
   final Color? backgroundColor;
@@ -97,7 +96,7 @@ class _DefaultLayoutState extends State<DefaultLayout> {
                         width: 24.0 * getScaleWidth(context),
                         height: 24.0 * getScaleWidth(context),
                       ),
-                      SizedBox(
+                      const SizedBox(
                         width: 8.0,
                       ),
                       Text(

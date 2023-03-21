@@ -24,7 +24,7 @@ class _LibraryDetailScreenState extends State<LibraryDetailScreen>
     'id': 'detail01',
     'thumbNail': 'asset/img/sample/free_content_2.png',
     'title': '과학특공대',
-    'detailTitle': '만약 물이 없다면?',
+    'detailTitle': '스크루지, 경제 시장이 되다!',
     'tags': [
       '전집',
       '의사소통',
@@ -185,11 +185,16 @@ class _LibraryDetailScreenState extends State<LibraryDetailScreen>
                       SizedBox(
                         height: 8.0 * getScaleWidth(context),
                       ),
-                      Text(
-                        libraryItem['detailTitle'],
-                        style: BODY2_REGULAR.copyWith(
-                          fontSize: 14.0 * getScaleWidth(context),
-                          color: GRAY090,
+                      SizedBox(
+                        width: 212.0 * getScaleWidth(context),
+                        child: Text(
+                          libraryItem['detailTitle'],
+                          style: BODY2_REGULAR.copyWith(
+                            fontSize: 14.0 * getScaleWidth(context),
+                            color: GRAY090,
+                          ),
+                          overflow: TextOverflow.ellipsis,
+                          maxLines: 2,
                         ),
                       ),
                     ],
