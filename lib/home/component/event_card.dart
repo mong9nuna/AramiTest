@@ -1,6 +1,7 @@
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
+import 'package:arami/mypage/view/mypage_event_screen.dart';
 import 'package:flutter/material.dart';
 
 class EventCard extends StatefulWidget {
@@ -51,7 +52,11 @@ class _EventCardState extends State<EventCard> {
               ),
               GestureDetector(
                 onTap: () {
-                  print('이벤트 더보기 작동');
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => MypageEventScreen(),
+                    ),
+                  );
                 },
                 child: Text(
                   '더보기 +',
