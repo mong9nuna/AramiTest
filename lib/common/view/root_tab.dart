@@ -86,51 +86,54 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
       logoType: true,
       appbarType: true,
       notiButton: true,
-      bottomNavigationBar: SizedBox(
-        height: 50.0 * getScaleWidth(context),
-        child: BottomNavigationBar(
-          backgroundColor: WHITE,
-          selectedItemColor: MAIN_COLOR_IMPACT,
-          unselectedItemColor: GRAY050,
-          showSelectedLabels: false,
-          showUnselectedLabels: false,
-          selectedFontSize: 0,
-          unselectedFontSize: 0,
-          type: BottomNavigationBarType.fixed,
-          onTap: (int index) {
-            controller.animateTo(index);
-          },
-          currentIndex: index,
-          items: [
-            BottomNavigationBarItem(
-              icon: _buildContainer(
-                  'asset/img/icons/home_default_icon.png', '홈', false),
-              activeIcon: _buildContainer(
-                  'asset/img/icons/home_active_icon.png', '홈', true),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: _buildContainer(
-                  'asset/img/icons/parenting_default_icon.png', '책육아', false),
-              activeIcon: _buildContainer(
-                  'asset/img/icons/parenting_active_icon.png', '책육아', true),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: _buildContainer(
-                  'asset/img/icons/library_default_icon.png', '라이브러리', false),
-              activeIcon: _buildContainer(
-                  'asset/img/icons/library_active_icon.png', '라이브러리', true),
-              label: '',
-            ),
-            BottomNavigationBarItem(
-              icon: _buildContainer(
-                  'asset/img/icons/mypage_default_icon.png', '마이페이지', false),
-              activeIcon: _buildContainer(
-                  'asset/img/icons/mypage_active_icon.png', '마이페이지', true),
-              label: '',
-            ),
-          ],
+      bottomNavigationBar: SafeArea(
+        child: SizedBox(
+          height: 50.0 * getScaleWidth(context),
+          child: BottomNavigationBar(
+            elevation: 0,
+            backgroundColor: WHITE,
+            selectedItemColor: MAIN_COLOR_IMPACT,
+            unselectedItemColor: GRAY050,
+            showSelectedLabels: false,
+            showUnselectedLabels: false,
+            selectedFontSize: 0,
+            unselectedFontSize: 0,
+            type: BottomNavigationBarType.fixed,
+            onTap: (int index) {
+              controller.animateTo(index);
+            },
+            currentIndex: index,
+            items: [
+              BottomNavigationBarItem(
+                icon: _buildContainer(
+                    'asset/img/icons/home_default_icon.png', '홈', false),
+                activeIcon: _buildContainer(
+                    'asset/img/icons/home_active_icon.png', '홈', true),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: _buildContainer(
+                    'asset/img/icons/parenting_default_icon.png', '책육아', false),
+                activeIcon: _buildContainer(
+                    'asset/img/icons/parenting_active_icon.png', '책육아', true),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: _buildContainer(
+                    'asset/img/icons/library_default_icon.png', '라이브러리', false),
+                activeIcon: _buildContainer(
+                    'asset/img/icons/library_active_icon.png', '라이브러리', true),
+                label: '',
+              ),
+              BottomNavigationBarItem(
+                icon: _buildContainer(
+                    'asset/img/icons/mypage_default_icon.png', '마이페이지', false),
+                activeIcon: _buildContainer(
+                    'asset/img/icons/mypage_active_icon.png', '마이페이지', true),
+                label: '',
+              ),
+            ],
+          ),
         ),
       ),
       child: TabBarView(

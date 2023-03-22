@@ -2,6 +2,7 @@ import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
 import 'package:arami/library/view/library_detail_screen.dart';
+import 'package:arami/library/view/library_product_detail.dart';
 import 'package:flutter/material.dart';
 
 class LibraryItemCard extends StatelessWidget {
@@ -72,11 +73,20 @@ class LibraryItemCard extends StatelessWidget {
                       ),
                     ],
                   ),
-                  Text(
-                    '더보기 +',
-                    style: BODY1_REGULAR.copyWith(
-                      fontSize: 12.0 * getFontWidth(context),
-                      color: GRAY090,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => LibraryProductDetail(),
+                        ),
+                      );
+                    },
+                    child: Text(
+                      '더보기 +',
+                      style: BODY1_REGULAR.copyWith(
+                        fontSize: 12.0 * getFontWidth(context),
+                        color: GRAY090,
+                      ),
                     ),
                   )
                 ],
@@ -92,16 +102,18 @@ class LibraryItemCard extends StatelessWidget {
               itemCount: itemList['details'].length,
               itemBuilder: (BuildContext context, int index) {
                 return Padding(
-                  padding: itemList['details'].length - 1 == index ? EdgeInsets.only(
-                    left: 16.0 * getScaleWidth(context),
-                    right: 16.0 * getScaleWidth(context),
-                  ) : EdgeInsets.only(
-                    left: 16.0 * getScaleWidth(context),
-                  ),
+                  padding: itemList['details'].length - 1 == index
+                      ? EdgeInsets.only(
+                          left: 16.0 * getScaleWidth(context),
+                          right: 16.0 * getScaleWidth(context),
+                        )
+                      : EdgeInsets.only(
+                          left: 16.0 * getScaleWidth(context),
+                        ),
                   child: GestureDetector(
-                    onTap: (){
+                    onTap: () {
                       // 라이브러리 상세이지 연계독서에 쓸 이미지 미리로딩..
-                      for(int i = 0; i < nextPageImages.length; i++){
+                      for (int i = 0; i < nextPageImages.length; i++) {
                         precacheImage(nextPageImages[i].image, context);
                       }
                       Navigator.of(context).push(
@@ -117,12 +129,11 @@ class LibraryItemCard extends StatelessWidget {
                           width: 100.0 * getScaleWidth(context),
                           height: 125.0 * getScaleWidth(context),
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(3.33),
-                            border: Border.all(
-                              width: 1.0,
-                              color: GRAY010,
-                            )
-                          ),
+                              borderRadius: BorderRadius.circular(3.33),
+                              border: Border.all(
+                                width: 1.0,
+                                color: GRAY010,
+                              )),
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(3.33),
                             child: Image.asset(

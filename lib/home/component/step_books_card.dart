@@ -1,6 +1,7 @@
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
+import 'package:arami/library/view/library_product_detail.dart';
 import 'package:flutter/material.dart';
 
 class StepBooksCard extends StatefulWidget {
@@ -210,7 +211,11 @@ class _StepBooksCardState extends State<StepBooksCard> {
               itemBuilder: (BuildContext context, int index) {
                 return GestureDetector(
                   onTap: () {
-                    print('$index 전집보기 작동');
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => LibraryProductDetail(),
+                      ),
+                    );
                   },
                   child: Padding(
                     padding: index == 0
