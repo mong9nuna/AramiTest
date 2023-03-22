@@ -2,6 +2,7 @@ import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
 import 'package:arami/common/layout/default_layout.dart';
+import 'package:arami/library/view/library_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class LibraryProductDetail extends StatelessWidget {
@@ -127,7 +128,7 @@ class LibraryProductDetail extends StatelessWidget {
               ),
             ),
             ListView.builder(
-              physics: const NeverScrollableScrollPhysics(),
+                physics: const NeverScrollableScrollPhysics(),
                 shrinkWrap: true,
                 padding: EdgeInsets.symmetric(
                   horizontal: 16.0 * getScaleWidth(context),
@@ -147,45 +148,54 @@ class LibraryProductDetail extends StatelessWidget {
                       padding: EdgeInsets.symmetric(
                         vertical: 12.0 * getScaleWidth(context),
                       ),
-                      child: Row(
-                        children: [
-                          Container(
-                            width: 72.0 * getScaleWidth(context),
-                            height: 90.0 * getScaleWidth(context),
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(4.0),
-                              child: Image.asset(
-                                itemList['items'][index]['thumbnail'],
-                                fit: BoxFit.cover,
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.of(context).push(
+                            MaterialPageRoute(
+                              builder: (context) => LibraryDetailScreen(),
+                            ),
+                          );
+                        },
+                        child: Row(
+                          children: [
+                            SizedBox(
+                              width: 72.0 * getScaleWidth(context),
+                              height: 90.0 * getScaleWidth(context),
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(4.0),
+                                child: Image.asset(
+                                  itemList['items'][index]['thumbnail'],
+                                  fit: BoxFit.cover,
+                                ),
                               ),
                             ),
-                          ),
-                          Padding(
-                            padding: EdgeInsets.only(
-                              left: 8.0 * getScaleWidth(context),
-                            ),
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Text(
-                                  itemList['items'][index]['title'],
-                                  style: BODY3_BOLD.copyWith(
-                                    fontSize: 16.0 * getFontWidth(context),
-                                    color: GRAY090,
+                            Padding(
+                              padding: EdgeInsets.only(
+                                left: 8.0 * getScaleWidth(context),
+                              ),
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    itemList['items'][index]['title'],
+                                    style: BODY3_BOLD.copyWith(
+                                      fontSize: 16.0 * getFontWidth(context),
+                                      color: GRAY090,
+                                    ),
                                   ),
-                                ),
-                                Text(
-                                  itemList['items'][index]['subtitle'],
-                                  style: BODY3_REGULAR.copyWith(
-                                    fontSize: 16.0 * getFontWidth(context),
-                                    color: GRAY090,
+                                  Text(
+                                    itemList['items'][index]['subtitle'],
+                                    style: BODY3_REGULAR.copyWith(
+                                      fontSize: 16.0 * getFontWidth(context),
+                                      color: GRAY090,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ),
                   );

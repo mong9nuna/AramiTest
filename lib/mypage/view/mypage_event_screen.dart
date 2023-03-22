@@ -63,61 +63,65 @@ class MypageEventScreen extends StatelessWidget {
           child: Column(
             children: [
               ListView.builder(
-                  physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  itemCount: itemList.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          horizontal: 16.0 * getScaleWidth(context),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            SizedBox(
-                              width: 328.0 * getScaleWidth(context),
-                              height: 186.0 * getScaleWidth(context),
-                              child: Image.asset(
-                                itemList[index]['thumbnail'],
-                                fit: BoxFit.cover,
-                              ),
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                itemCount: itemList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: EdgeInsets.symmetric(
+                      horizontal: 16.0 * getScaleWidth(context),
+                    ),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        GestureDetector(
+                          onTap: (){
+                            print('이벤트 터치');
+                          },
+                          child: SizedBox(
+                            width: 328.0 * getScaleWidth(context),
+                            height: 186.0 * getScaleWidth(context),
+                            child: Image.asset(
+                              itemList[index]['thumbnail'],
+                              fit: BoxFit.cover,
                             ),
-                            Padding(
-                              padding: EdgeInsets.symmetric(
-                                vertical: 8.0 * getScaleWidth(context),
-                              ),
-                              child: Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    itemList[index]['title'],
-                                    style: BODY3_BOLD.copyWith(
-                                      fontSize: 16.0 * getFontWidth(context),
-                                      color: GRAY090,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 4.0 * getScaleWidth(context),
-                                  ),
-                                  Text(
-                                    "${itemList[index]['startDate']} ~ ${itemList[index]['endDate']}",
-                                    style: BODY1_REGULAR.copyWith(
-                                      fontSize: 12.0 * getFontWidth(context),
-                                      color: GRAY040,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    height: 16.0 * getScaleWidth(context),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
+                          ),
                         ),
-                      ),
-                    );
-                  })
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 8.0 * getScaleWidth(context),
+                          ),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Text(
+                                itemList[index]['title'],
+                                style: BODY3_BOLD.copyWith(
+                                  fontSize: 16.0 * getFontWidth(context),
+                                  color: GRAY090,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 4.0 * getScaleWidth(context),
+                              ),
+                              Text(
+                                '${itemList[index]['startDate']} ~ ${itemList[index]['endDate']}',
+                                style: BODY1_REGULAR.copyWith(
+                                  fontSize: 12.0 * getFontWidth(context),
+                                  color: GRAY040,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 16.0 * getScaleWidth(context),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                },
+              ),
             ],
           ),
         ),
