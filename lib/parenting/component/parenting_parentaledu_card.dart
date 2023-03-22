@@ -1,6 +1,7 @@
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
+import 'package:arami/parenting/view/parenting_parentaledu_screen.dart';
 import 'package:flutter/material.dart';
 
 class ParentingParentaleduCard extends StatelessWidget {
@@ -52,7 +53,12 @@ class ParentingParentaleduCard extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  print('부모특강 더보기 작동');
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ParentingParentaleduScreen(initialIndex: 0),
+                    ),
+                  );
                 },
                 child: Text(
                   '더보기 +',
@@ -65,23 +71,23 @@ class ParentingParentaleduCard extends StatelessWidget {
           ),
         ),
         Container(
-          height: 192.0 * getScaleWidth(context),
+          height: 193.0 * getScaleWidth(context),
           child: ListView.builder(
             scrollDirection: Axis.horizontal,
             itemCount: parentaleduItem.length,
             itemBuilder: (BuildContext context, int index) {
               return GestureDetector(
-                onTap: (){
+                onTap: () {
                   print('영상 아이디 : ${parentaleduItem[index]['id']} 작동');
                 },
                 child: Padding(
                   padding: index == 0
                       ? EdgeInsets.only(
-                    left: 16.0 * getScaleWidth(context),
-                    right: 8.0 * getScaleWidth(context),
-                  )
+                          left: 16.0 * getScaleWidth(context),
+                          right: 8.0 * getScaleWidth(context),
+                        )
                       : EdgeInsets.symmetric(
-                      horizontal: 8.0 * getScaleWidth(context)),
+                          horizontal: 8.0 * getScaleWidth(context)),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [

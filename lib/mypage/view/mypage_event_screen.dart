@@ -80,7 +80,7 @@ class MypageEventScreen extends StatelessWidget {
                           },
                           child: SizedBox(
                             width: 328.0 * getScaleWidth(context),
-                            height: 186.0 * getScaleWidth(context),
+                            height: 185.0 * getScaleWidth(context),
                             child: Image.asset(
                               itemList[index]['thumbnail'],
                               fit: BoxFit.cover,
