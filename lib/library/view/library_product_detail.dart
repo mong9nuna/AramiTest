@@ -63,7 +63,7 @@ class LibraryProductDetail extends StatelessWidget {
               child: Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
+                  SizedBox(
                     width: 120.0 * getScaleWidth(context),
                     height: 90.0 * getScaleWidth(context),
                     child: ClipRRect(
@@ -126,72 +126,70 @@ class LibraryProductDetail extends StatelessWidget {
                 ),
               ),
             ),
-            Expanded(
-              child: ListView.builder(
-                physics: NeverScrollableScrollPhysics(),
-                  shrinkWrap: true,
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16.0 * getScaleWidth(context),
-                  ),
-                  itemCount: itemList['items'].length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Container(
-                      decoration: BoxDecoration(
-                        border: Border(
-                          bottom: BorderSide(
-                            color: OUTLINE,
-                            width: 1.0,
+            ListView.builder(
+              physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                padding: EdgeInsets.symmetric(
+                  horizontal: 16.0 * getScaleWidth(context),
+                ),
+                itemCount: itemList['items'].length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Container(
+                    decoration: BoxDecoration(
+                      border: Border(
+                        bottom: BorderSide(
+                          color: OUTLINE,
+                          width: 1.0,
+                        ),
+                      ),
+                    ),
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(
+                        vertical: 12.0 * getScaleWidth(context),
+                      ),
+                      child: Row(
+                        children: [
+                          Container(
+                            width: 72.0 * getScaleWidth(context),
+                            height: 90.0 * getScaleWidth(context),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(4.0),
+                              child: Image.asset(
+                                itemList['items'][index]['thumbnail'],
+                                fit: BoxFit.cover,
+                              ),
+                            ),
                           ),
-                        ),
-                      ),
-                      child: Padding(
-                        padding: EdgeInsets.symmetric(
-                          vertical: 12.0 * getScaleWidth(context),
-                        ),
-                        child: Row(
-                          children: [
-                            Container(
-                              width: 72.0 * getScaleWidth(context),
-                              height: 90.0 * getScaleWidth(context),
-                              child: ClipRRect(
-                                borderRadius: BorderRadius.circular(4.0),
-                                child: Image.asset(
-                                  itemList['items'][index]['thumbnail'],
-                                  fit: BoxFit.cover,
+                          Padding(
+                            padding: EdgeInsets.only(
+                              left: 8.0 * getScaleWidth(context),
+                            ),
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  itemList['items'][index]['title'],
+                                  style: BODY3_BOLD.copyWith(
+                                    fontSize: 16.0 * getFontWidth(context),
+                                    color: GRAY090,
+                                  ),
                                 ),
-                              ),
-                            ),
-                            Padding(
-                              padding: EdgeInsets.only(
-                                left: 8.0 * getScaleWidth(context),
-                              ),
-                              child: Column(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    itemList['items'][index]['title'],
-                                    style: BODY3_BOLD.copyWith(
-                                      fontSize: 16.0 * getFontWidth(context),
-                                      color: GRAY090,
-                                    ),
+                                Text(
+                                  itemList['items'][index]['subtitle'],
+                                  style: BODY3_REGULAR.copyWith(
+                                    fontSize: 16.0 * getFontWidth(context),
+                                    color: GRAY090,
                                   ),
-                                  Text(
-                                    itemList['items'][index]['subtitle'],
-                                    style: BODY3_REGULAR.copyWith(
-                                      fontSize: 16.0 * getFontWidth(context),
-                                      color: GRAY090,
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
-                          ],
-                        ),
+                          ),
+                        ],
                       ),
-                    );
-                  }),
-            )
+                    ),
+                  );
+                })
           ],
         ),
       ),
