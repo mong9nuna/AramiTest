@@ -1,4 +1,7 @@
 import 'package:intl/intl.dart';
+import 'package:flutter/material.dart';
+
+import 'colors.dart';
 
 String TimeCount(String time) {
   DateTime? newDate = DateTime.tryParse(time);
@@ -39,4 +42,11 @@ String getToday() {
   DateFormat formatter = DateFormat('yyyy-MM-dd hh:mm:ss');
   var strToday = formatter.format(now);
   return strToday;
+}
+
+Container Lines(double height){
+  return Container(
+    height: height,
+    color: LIGHT_BG3,
+  );
 }

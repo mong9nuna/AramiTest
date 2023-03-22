@@ -4,7 +4,8 @@ import 'package:arami/common/const/size.dart';
 import 'package:flutter/material.dart';
 
 class CustomSearchBar extends StatefulWidget {
-  const CustomSearchBar({Key? key}) : super(key: key);
+  final String hintText;
+  const CustomSearchBar({required this.hintText, Key? key}) : super(key: key);
 
   @override
   State<CustomSearchBar> createState() => _CustomSearchBarState();
@@ -27,7 +28,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: 38.0 * getScaleWidth(context),
       child: TextField(
         textAlignVertical: TextAlignVertical.center,
@@ -51,7 +52,7 @@ class _CustomSearchBarState extends State<CustomSearchBar> {
             minWidth: 20.0 * getScaleWidth(context),
             minHeight: 20.0 * getScaleWidth(context),
           ),
-          hintText: '전집 이름이나 책 이름으로 검색하세요!',
+          hintText: widget.hintText,
           hintStyle: BODY2_REGULAR.copyWith(
               fontSize: 14.0 * getFontWidth(context), color: GRAY020),
           enabledBorder: OutlineInputBorder(

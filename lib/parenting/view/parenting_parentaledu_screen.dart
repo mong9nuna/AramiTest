@@ -190,7 +190,9 @@ class _ParentingParentaleduScreenState
                   horizontal: 16.0 * getScaleWidth(context),
                   vertical: 12.0 * getScaleWidth(context),
                 ),
-                child: CustomSearchBar(),
+                child: const CustomSearchBar(
+                  hintText: '질문이나 내용으로 검색해주세요.',
+                ),
               ),
               ListView.builder(
                 physics: NeverScrollableScrollPhysics(),
@@ -258,7 +260,9 @@ class _ParentingParentaleduScreenState
                   padding: EdgeInsets.symmetric(
                     vertical: 12.0 * getScaleWidth(context),
                   ),
-                  child: CustomSearchBar(),
+                  child: const CustomSearchBar(
+                    hintText: '질문이나 내용으로 검색해주세요.',
+                  ),
                 ),
                 GridView.builder(
                   itemCount: cardnewsItem.length,

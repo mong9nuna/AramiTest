@@ -1,4 +1,5 @@
 import 'package:arami/common/const/colors.dart';
+import 'package:arami/common/const/function.dart';
 import 'package:arami/home/component/todaybooks_card.dart';
 import 'package:arami/parenting/component/parenting_cardnews_card.dart';
 import 'package:arami/parenting/component/parenting_parentaledu_card.dart';
@@ -23,24 +24,17 @@ class ParentingMainScreen extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             ParentingTopMenu(),
-            Lines(),
+            Lines(8.0),
             TodayBooksCard(),
-            Lines(),
+            Lines(8.0),
             ParentingMomsqnaCard(),
-            Lines(),
+            Lines(8.0),
             ParentingParentaleduCard(),
             ParentingCardNewsCard(),
-            Lines(),
+            Lines(8.0),
           ],
         ),
       ),
-    );
-  }
-
-  Container Lines(){
-    return Container(
-      height: 8.0,
-      color: LIGHT_BG3,
     );
   }
 }

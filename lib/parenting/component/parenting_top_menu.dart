@@ -1,6 +1,7 @@
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
+import 'package:arami/parenting/view/parenting_management_screen.dart';
 import 'package:flutter/material.dart';
 
 class ParentingTopMenu extends StatelessWidget {
@@ -10,18 +11,22 @@ class ParentingTopMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<Map<String, dynamic>> parentingTopMenu = [
       {
+        'id': '01',
         'title': '책육아활동',
         'thumbNail': 'asset/img/icons/parenting_management_icon.png',
       },
       {
+        'id': '02',
         'title': '기질검사',
         'thumbNail': 'asset/img/icons/parenting_temperament_test_icon.png',
       },
       {
+        'id': '03',
         'title': '부모교육',
         'thumbNail': 'asset/img/icons/parenting_parentaledu_icon.png',
       },
       {
+        'id': '04',
         'title': '맘 Q&A',
         'thumbNail': 'asset/img/icons/parenting_momsqna_icon.png',
       },
@@ -42,17 +47,47 @@ class ParentingTopMenu extends StatelessWidget {
         itemCount: parentingTopMenu.length,
         itemBuilder: (BuildContext context, int index) {
           return GestureDetector(
-            onTap: (){
+            onTap: () {
               print('${parentingTopMenu[index]['title']} 작동');
+              switch (parentingTopMenu[index]['id']) {
+                case '01':
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ParentingManagementScreen(),
+                    ),
+                  );
+                  break;
+                case '02':
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ParentingManagementScreen(),
+                    ),
+                  );
+                  break;
+                case '03':
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ParentingManagementScreen(),
+                    ),
+                  );
+                  break;
+                case '04':
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => ParentingManagementScreen(),
+                    ),
+                  );
+                  break;
+              }
             },
             child: Padding(
               padding: index == 0
                   ? EdgeInsets.only(
-                left: 24.0 * getScaleWidth(context),
-                right: 8.5 * getScaleWidth(context),
-              )
+                      left: 24.0 * getScaleWidth(context),
+                      right: 8.5 * getScaleWidth(context),
+                    )
                   : EdgeInsets.symmetric(
-                  horizontal: 8.5 * getScaleWidth(context)),
+                      horizontal: 8.5 * getScaleWidth(context)),
               child: Container(
                 width: 65.0 * getScaleWidth(context),
                 child: Column(

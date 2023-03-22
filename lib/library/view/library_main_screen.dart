@@ -584,7 +584,9 @@ class _LibraryMainScreenState extends State<LibraryMainScreen>
                       left: 16.0 * getScaleWidth(context),
                       right: 16.0 * getScaleWidth(context),
                     ),
-                    child: CustomSearchBar(),
+                    child: const CustomSearchBar(
+                      hintText: '전집 이름이나 책 이름으로 검색하세요!',
+                    ),
                   ),
                   if (tabIndex == 0)
                     Padding(
