@@ -424,7 +424,7 @@ class _LibraryMainScreenState extends State<LibraryMainScreen>
 
     List<Widget> tabs = [
       Tab(
-        height: 50.0 * getScaleWidth_Max(context),
+        height: 50.0 * getScaleWidth(context),
         child: Container(
           alignment: Alignment.bottomCenter,
           child: Padding(
@@ -444,7 +444,7 @@ class _LibraryMainScreenState extends State<LibraryMainScreen>
         ),
       ),
       Tab(
-        height: 50.0 * getScaleWidth_Max(context),
+        height: 50.0 * getScaleWidth(context),
         child: Container(
           alignment: Alignment.bottomCenter,
           child: Padding(
@@ -464,7 +464,7 @@ class _LibraryMainScreenState extends State<LibraryMainScreen>
         ),
       ),
       Tab(
-        height: 50.0 * getScaleWidth_Max(context),
+        height: 50.0 * getScaleWidth(context),
         child: Container(
           alignment: Alignment.bottomCenter,
           child: Padding(
@@ -484,7 +484,7 @@ class _LibraryMainScreenState extends State<LibraryMainScreen>
         ),
       ),
       Tab(
-        height: 50.0 * getScaleWidth_Max(context),
+        height: 50.0 * getScaleWidth(context),
         child: Container(
           alignment: Alignment.bottomCenter,
           child: Padding(
@@ -504,7 +504,7 @@ class _LibraryMainScreenState extends State<LibraryMainScreen>
         ),
       ),
       Tab(
-        height: 50.0 * getScaleWidth_Max(context),
+        height: 50.0 * getScaleWidth(context),
         child: Container(
           alignment: Alignment.bottomCenter,
           child: Padding(
@@ -534,6 +534,7 @@ class _LibraryMainScreenState extends State<LibraryMainScreen>
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
+            width: 360 * getScaleWidth_Max(context),
             decoration: BoxDecoration(
               border: Border(
                 bottom: BorderSide(
@@ -546,7 +547,7 @@ class _LibraryMainScreenState extends State<LibraryMainScreen>
               labelPadding: const EdgeInsets.symmetric(
                 horizontal: 10.0,
               ),
-              isScrollable: true,
+              isScrollable: MediaQuery.of(context).size.width > 500 ? false : true,
               indicatorSize: TabBarIndicatorSize.label,
               indicator: UnderlineTabIndicator(
                 borderSide: BorderSide(width: 2, color: MAIN_COLOR),
@@ -654,7 +655,7 @@ class _LibraryMainScreenState extends State<LibraryMainScreen>
                             borderRadius: BorderRadius.circular(8.0),
                             color: MAIN_COLOR_OP10,
                           ),
-                          width: 328.0 * getScaleWidth(context),
+                          width: 328.0 * getScaleWidth_Max(context),
                           height: 100.0 * getScaleWidth(context),
                           child: Text(
                             '아이와 함께 메이킹북을 만들어보세요!',

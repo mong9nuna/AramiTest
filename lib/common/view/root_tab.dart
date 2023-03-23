@@ -87,8 +87,16 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
       appbarType: true,
       notiButton: true,
       bottomNavigationBar: SafeArea(
-        child: SizedBox(
+        child: Container(
           height: 50.0 * getScaleWidth(context),
+          decoration: BoxDecoration(
+            border: Border(
+              top: BorderSide(
+                color: GRAY020,
+                width: 1.0,
+              ),
+            ),
+          ),
           child: BottomNavigationBar(
             elevation: 0,
             backgroundColor: WHITE,

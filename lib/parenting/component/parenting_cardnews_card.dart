@@ -1,6 +1,8 @@
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
+import 'package:arami/library/view/parenting_parentaledu_detail_screen.dart';
+import 'package:arami/parenting/view/parenting_parentaledu_screen.dart';
 import 'package:flutter/material.dart';
 
 class ParentingCardNewsCard extends StatelessWidget {
@@ -56,7 +58,12 @@ class ParentingCardNewsCard extends StatelessWidget {
               ),
               GestureDetector(
                 onTap: () {
-                  print('카드뉴스 더보기 작동');
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          ParentingParentaleduScreen(initialIndex: 1),
+                    ),
+                  );
                 },
                 child: Text(
                   '더보기 +',
@@ -86,10 +93,20 @@ class ParentingCardNewsCard extends StatelessWidget {
                 childAspectRatio: 1.0,
               ),
               itemBuilder: (BuildContext context, int index) {
-                return Container(
-                  height: 104.0 * getScaleWidth_Max(context),
-                  width: 104.0 * getScaleWidth_Max(context),
-                  child: Image.asset(cardnewsItem[index]['thumbNail']),
+                return GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            ParentingParentaleduDetailScreen(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    height: 104.0 * getScaleWidth_Max(context),
+                    width: 104.0 * getScaleWidth_Max(context),
+                    child: Image.asset(cardnewsItem[index]['thumbNail']),
+                  ),
                 );
               },
             ),
