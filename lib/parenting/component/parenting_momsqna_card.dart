@@ -160,7 +160,7 @@ class _ParentingMomsqnaCardState extends State<ParentingMomsqnaCard> {
             vertical: 12.0 * getScaleWidth(context),
           ),
           child: SizedBox(
-            height: 38.0 * getScaleWidth(context),
+            height: 38.5 * getScaleWidth(context),
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
               itemCount: momsqnaTopMenu.length,

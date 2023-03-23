@@ -214,7 +214,7 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
                           RepaintBoundary(
                             key: globalKey,
                             child: SizedBox(
-                              height: 238.0 * getScaleWidth(context),
+                              height: 238.0 * getScaleWidth_Max(context),
                               child: PageView.builder(
                                 controller: pageController,
                                 onPageChanged: (value) {
@@ -467,7 +467,7 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
                           : audioMode
                               ? Icons.stop_circle_outlined
                               : Icons.keyboard_voice_rounded,
-                      size: 24.0,
+                      size: 24.0 * getScaleWidth(context),
                       color: WHITE,
                     ),
                   ),
@@ -493,7 +493,7 @@ class _LibraryMakingBooksScreenState extends State<LibraryMakingBooksScreen> {
                       ),
                       child: Icon(
                         Icons.play_circle_outline,
-                        size: 24.0,
+                        size: 24.0 * getScaleWidth(context),
                         color: WHITE,
                       ),
                     ),

@@ -104,8 +104,8 @@ class _LibraryDetailLinkedScreenState extends State<LibraryDetailLinkedScreen> {
                 quarterTurns: -1,
                 child: ListWheelScrollView.useDelegate(
                   physics: const FixedExtentScrollPhysics(),
-                  perspective: 0.009,
-                  // /diameterRatio: 1.5,
+                  perspective: 0.005,
+                  // diameterRatio: 1.5,
                   squeeze: 0.75,
                   onSelectedItemChanged: (x) {
                     setState(() {
