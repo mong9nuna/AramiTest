@@ -57,12 +57,8 @@ class _NotiMainScreenState extends State<NotiMainScreen> {
     ];
 
     List<Widget> tabView = [
-      Container(
-        child: NotiScreen(),
-      ),
-      Container(
-        child: PointScreen(),
-      ),
+      const NotiScreen(),
+      const PointScreen(),
     ];
     return DefaultLayout(
       appTitle: '알림',

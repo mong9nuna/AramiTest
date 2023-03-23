@@ -56,7 +56,6 @@ final BODY2_BOLD = TextStyle(
 
 final BODY2_REGULAR = TextStyle(
   fontSize: 14,
-  height: 1.57,
   fontWeight: FontWeight.w400,
 );
 

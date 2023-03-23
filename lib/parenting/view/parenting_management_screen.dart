@@ -74,8 +74,10 @@ class _ParentingManagementScreenState extends State<ParentingManagementScreen> {
                     width: 83.0 * getScaleWidth(context),
                     height: 32.0 * getScaleWidth(context),
                     child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
+                        SizedBox(
+                          width: 8.0 * getScaleWidth(context),
+                        ),
                         Text(
                           topSelectItem[index]['title'],
                           style: BODY1_BOLD.copyWith(
