@@ -86,9 +86,11 @@ class NotiScreen extends StatelessWidget {
     ];
 
     return ListView.builder(
-      padding: EdgeInsets.symmetric(
-        horizontal: 16.0 * getScaleWidth_Max(context),
-        vertical: 12.0 * getScaleWidth_Max(context),
+      padding: EdgeInsets.only(
+        top: 12.0 * getScaleWidth_Max(context),
+        bottom: 50.0 * getScaleWidth_Max(context),
+        left: 16.0 * getScaleWidth_Max(context),
+        right: 16.0 * getScaleWidth_Max(context),
       ),
       itemCount: notiList.length,
       itemBuilder: (BuildContext context, int index) {

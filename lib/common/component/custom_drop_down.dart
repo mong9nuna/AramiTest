@@ -6,10 +6,12 @@ import 'package:flutter/material.dart';
 class CustomDropDown extends StatefulWidget {
   final List<Map<String, dynamic>> itemList;
   ValueChanged? itemChange;
+  OverlayEntry? overlayEntry;
 
   CustomDropDown({
     required this.itemList,
     this.itemChange,
+    this.overlayEntry,
     Key? key,
   }) : super(key: key);
 
@@ -27,6 +29,12 @@ class _CustomDropDownState extends State<CustomDropDown> {
   void initState() {
     selectItem = widget.itemList[0]['title'];
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    _removeOverlay();
+    super.dispose();
   }
 
   // 드롭다운 생성.
@@ -86,7 +94,8 @@ class _CustomDropDownState extends State<CustomDropDown> {
                     return GestureDetector(
                       onTap: () {
                         setState(() {
-                          widget.itemChange!(widget.itemList[index]['statusCode']);
+                          widget.itemChange!(
+                              widget.itemList[index]['statusCode']);
                         });
                         selectItem = widget.itemList[index]['title'];
                         overlayChange();

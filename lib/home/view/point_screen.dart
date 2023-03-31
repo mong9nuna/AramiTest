@@ -14,6 +14,7 @@ class PointScreen extends StatefulWidget {
 }
 
 class _PointScreenState extends State<PointScreen> {
+  OverlayEntry? overlayEntry;
   String statusCode = '00';
   List<Map<String, dynamic>> pointList = [];
 

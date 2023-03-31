@@ -66,8 +66,8 @@ class _ParentaleduScreenState extends State<ParentaleduScreen> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       Container(
-                        width: 328.0 * getScaleWidth_Max(context),
-                        //height: 185.0 * getScaleWidth_Max(context),
+                        width: 328.0 * getScaleWidth(context),
+                        //height: 185.0 * getScaleWidth(context),
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(8.0),
                           child: Image.asset(
