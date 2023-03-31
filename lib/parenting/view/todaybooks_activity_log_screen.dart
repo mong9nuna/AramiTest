@@ -33,7 +33,7 @@ class _TodayBooksActivityLogScreenState
       'date': '2023-02-28 15:00:00',
       'userImage': 'asset/img/sample/user_sample_1.png',
       'detail': '엄마 우리 아람이가 자동차를 보면서 네네네!라고 말했다. 감동이다. 벌써 10번째 보는 책 최애책!',
-      'imgType' : '1',
+      'imgType': '1',
       'detailImages': [
         'asset/img/sample/activity_log_sample_1.png',
         'asset/img/sample/activity_log_sample_2.png',
@@ -53,7 +53,7 @@ class _TodayBooksActivityLogScreenState
       'date': '2022-02-23 15:00:00',
       'userImage': 'asset/img/sample/user_sample_1.png',
       'detail': '아빠 우리 아람이가 자동차를 보면서 네네네!라고 말했다. 감동이다. 벌써 10번째 보는 책 최애책!',
-      'imgType' : '1',
+      'imgType': '1',
       'detailImages': [
         'asset/img/sample/activity_log_sample_1.png',
         'asset/img/sample/activity_log_sample_2.png',
@@ -69,7 +69,6 @@ class _TodayBooksActivityLogScreenState
 
   @override
   Widget build(BuildContext context) {
-
     String count = '240';
 
     return Column(
@@ -90,34 +89,10 @@ class _TodayBooksActivityLogScreenState
         GestureDetector(
           onTap: () {
             setState(() {
-              if(widget.controller != null){
+              if (widget.controller != null) {
                 widget.controller?.pause();
               }
               activityLog(context);
-              /*
-              showModalBottomSheet(
-                enableDrag: false,
-                shape: const RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(10.0),
-                      topLeft: Radius.circular(10.0)),
-                ),
-                context: context,
-                useSafeArea: true,
-                isScrollControlled: true,
-                isDismissible: false,
-                builder: (BuildContext context) {
-                  return SingleChildScrollView(
-                    child: Padding(
-                      padding: EdgeInsets.only(
-                          bottom: MediaQuery.of(context).viewInsets.bottom),
-                      child: ActivityLogWrite(),
-                    ),
-                  );
-                },
-              );
-
-               */
             });
           },
           child: SizedBox(
@@ -249,6 +224,8 @@ class _TodayBooksActivityLogScreenState
         builder: (context) => ActivityLogWrite(),
       ),
     );
-    activityLogList.insert(0, result);
+    setState(() {
+      activityLogList.insert(0, result);
+    });
   }
 }

@@ -102,18 +102,12 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                         size: 24.0 * getScaleWidth(context),
                       ),
                     ),
-                    SizedBox(
-                      width: 82.0 * getScaleWidth(context),
-                    ),
                     Text(
                       '활동일지 쓰기',
                       style: TITLE1_BOLD.copyWith(
                         fontSize: 20.0 * getFontWidth(context),
                         color: GRAY090,
                       ),
-                    ),
-                    SizedBox(
-                      width: 68.0 * getScaleWidth(context),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -315,7 +309,7 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
                               children: [
                                 Container(
                                   height: 30.0 * getScaleWidth(context),
-                                  width: 55.0 * getScaleWidth(context),
+                                  width: 60.0 * getScaleWidth(context),
                                   child: TextField(
                                     style: BODY2_REGULAR.copyWith(
                                         fontSize: 14.0 * getFontWidth(context),
@@ -727,6 +721,7 @@ class _ActivityLogWriteState extends State<ActivityLogWrite> {
     sendData['imgType'] = '2';
     sendData['favoriteCount'] = 0;
     sendData['tags'] = selected;
+    print(sendData);
     return sendData;
   }
 }
