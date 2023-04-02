@@ -1,17 +1,17 @@
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
+import 'package:arami/home/provider/home_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CustomDropDown extends StatefulWidget {
   final List<Map<String, dynamic>> itemList;
   ValueChanged? itemChange;
-  OverlayEntry? overlayEntry;
 
   CustomDropDown({
     required this.itemList,
     this.itemChange,
-    this.overlayEntry,
     Key? key,
   }) : super(key: key);
 
@@ -20,10 +20,9 @@ class CustomDropDown extends StatefulWidget {
 }
 
 class _CustomDropDownState extends State<CustomDropDown> {
+  late HomeProvider _homeProvider;
   String? selectItem;
-  OverlayEntry? overlayEntry;
   final LayerLink layerLink = LayerLink();
-  bool iconFlag = true;
 
   @override
   void initState() {
@@ -31,18 +30,12 @@ class _CustomDropDownState extends State<CustomDropDown> {
     super.initState();
   }
 
-  @override
-  void dispose() {
-    _removeOverlay();
-    super.dispose();
-  }
-
   // 드롭다운 생성.
   void _createOverlay(LayerLink layerlink) {
-    if (overlayEntry == null) {
+    if (_homeProvider.overlayEntry == null) {
       setState(() {
-        overlayEntry = _customDropdown(layerLink);
-        Overlay.of(context)?.insert(overlayEntry!);
+        _homeProvider.overlayEntry = _customDropdown(layerLink);
+        Overlay.of(context)?.insert(_homeProvider.overlayEntry!);
       });
     }
   }
@@ -51,8 +44,10 @@ class _CustomDropDownState extends State<CustomDropDown> {
   void _removeOverlay() {
     setState(
       () {
-        overlayEntry?.remove();
-        overlayEntry = null;
+        if(_homeProvider.overlayEntry != null){
+          _homeProvider.overlayEntry?.remove();
+          _homeProvider.overlayEntry = null;
+        }
       },
     );
   }
@@ -139,6 +134,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
 
   @override
   Widget build(BuildContext context) {
+    _homeProvider = Provider.of<HomeProvider>(context);
     return GestureDetector(
       onTap: () {
         overlayChange();
@@ -173,7 +169,7 @@ class _CustomDropDownState extends State<CustomDropDown> {
                   },
                   padding: EdgeInsets.zero,
                   constraints: const BoxConstraints(),
-                  icon: iconFlag
+                  icon: _homeProvider.iconFlag
                       ? Icon(
                           Icons.arrow_drop_down,
                           color: GRAY020,
@@ -192,16 +188,16 @@ class _CustomDropDownState extends State<CustomDropDown> {
   }
 
   void overlayChange() {
-    if (overlayEntry == null) {
+    if (_homeProvider.overlayEntry == null) {
       _createOverlay(layerLink);
     } else {
       _removeOverlay();
     }
 
-    if (iconFlag) {
-      iconFlag = false;
+    if (_homeProvider.iconFlag) {
+      _homeProvider.iconFlag = false;
     } else {
-      iconFlag = true;
+      _homeProvider.iconFlag = true;
     }
   }
 }

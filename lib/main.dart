@@ -1,4 +1,5 @@
 import 'package:arami/common/view/splash_screen.dart';
+import 'package:arami/home/provider/home_provider.dart';
 import 'package:arami/library/provider/makingbook_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -17,6 +18,9 @@ void main() async {
       providers: [
         ChangeNotifierProvider(
           create: (context) => MakingBookProvider(),
+        ),
+        ChangeNotifierProvider(
+          create: (context) => HomeProvider(),
         )
       ],
       child: const MyApp(),

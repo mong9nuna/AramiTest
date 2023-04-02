@@ -2,8 +2,10 @@ import 'package:arami/common/component/custom_calendar_dialog.dart';
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
+import 'package:arami/home/provider/home_provider.dart';
 import 'package:arami/home/view/noti_main_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class DefaultLayout extends StatefulWidget {
   final Color? backgroundColor;
@@ -36,10 +38,25 @@ class DefaultLayout extends StatefulWidget {
 }
 
 class _DefaultLayoutState extends State<DefaultLayout> {
+  late HomeProvider _homeProvider;
   late String date;
+
+  // 드롭다운 해제.
+  void _removeOverlay() {
+    setState(
+          () {
+        if (_homeProvider.overlayEntry != null) {
+          _homeProvider.overlayEntry?.remove();
+          _homeProvider.overlayEntry = null;
+          _homeProvider.iconFlag = true;
+        }
+      },
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
+    _homeProvider = Provider.of<HomeProvider>(context);
     return SafeArea(
       bottom: false,
       top: false,
@@ -114,6 +131,7 @@ class _DefaultLayoutState extends State<DefaultLayout> {
           : IconButton(
               onPressed: () {
                 Navigator.pop(context);
+                _removeOverlay();
               },
               padding: EdgeInsets.zero,
               constraints: const BoxConstraints(),
