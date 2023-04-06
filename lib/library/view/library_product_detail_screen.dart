@@ -5,8 +5,8 @@ import 'package:arami/common/layout/default_layout.dart';
 import 'package:arami/library/view/library_detail_screen.dart';
 import 'package:flutter/material.dart';
 
-class LibraryProductDetail extends StatelessWidget {
-  const LibraryProductDetail({Key? key}) : super(key: key);
+class LibraryProductDetailScreen extends StatelessWidget {
+  const LibraryProductDetailScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

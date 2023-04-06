@@ -200,7 +200,7 @@ class _PointScreenState extends State<PointScreen> {
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width,
-              height: 110.0 * getScaleWidth_Max(context),
+              height: 110.0 * getScaleWidth(context),
               child: Padding(
                 padding: EdgeInsets.symmetric(
                   horizontal: 16.0 * getScaleWidth_Max(context),
@@ -210,8 +210,8 @@ class _PointScreenState extends State<PointScreen> {
                   children: [
                     Padding(
                       padding: EdgeInsets.only(
-                        top: 24.0 * getScaleWidth_Max(context),
-                        bottom: 4.0 * getScaleWidth_Max(context),
+                        top: 24.0 * getScaleWidth(context),
+                        bottom: 4.0 * getScaleWidth(context),
                       ),
                       child: Text(
                         '총 포인트',
@@ -223,7 +223,7 @@ class _PointScreenState extends State<PointScreen> {
                     ),
                     Padding(
                       padding: EdgeInsets.only(
-                        bottom: 24.0 * getScaleWidth_Max(context),
+                        bottom: 24.0 * getScaleWidth(context),
                       ),
                       child: Text(
                         '${NumberFormat('###,###,###,###').format(totalPoint)} P',

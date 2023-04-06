@@ -1,7 +1,7 @@
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
-import 'package:arami/library/view/library_product_detail.dart';
+import 'package:arami/library/view/library_product_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class StepBooksCard extends StatefulWidget {
@@ -213,7 +213,7 @@ class _StepBooksCardState extends State<StepBooksCard> {
                   onTap: () {
                     Navigator.of(context).push(
                       MaterialPageRoute(
-                        builder: (context) => LibraryProductDetail(),
+                        builder: (context) => LibraryProductDetailScreen(),
                       ),
                     );
                   },

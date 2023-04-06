@@ -2,7 +2,7 @@ import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
 import 'package:arami/library/view/library_detail_screen.dart';
-import 'package:arami/library/view/library_product_detail.dart';
+import 'package:arami/library/view/library_product_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class LibraryItemCard extends StatelessWidget {
@@ -77,7 +77,7 @@ class LibraryItemCard extends StatelessWidget {
                     onTap: () {
                       Navigator.of(context).push(
                         MaterialPageRoute(
-                          builder: (context) => LibraryProductDetail(),
+                          builder: (context) => LibraryProductDetailScreen(),
                         ),
                       );
                     },

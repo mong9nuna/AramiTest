@@ -1,6 +1,6 @@
 import 'package:arami/common/component/custom_search_bar.dart';
 import 'package:arami/common/const/size.dart';
-import 'package:arami/library/view/parenting_parentaledu_detail_screen.dart';
+import 'package:arami/parenting/view/parenting_parentaledu_detail_screen.dart';
 import 'package:flutter/material.dart';
 
 class CardnewsScreen extends StatefulWidget {

@@ -7,6 +7,8 @@ import 'package:arami/library/view/library_main_screen.dart';
 import 'package:arami/parenting/view/parenting_main_screen.dart';
 import 'package:flutter/material.dart';
 
+import '../../user/login_check_screen.dart';
+
 class RootTab extends StatefulWidget {
   const RootTab({Key? key}) : super(key: key);
 
@@ -36,13 +38,15 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
     controller = TabController(length: 4, vsync: this);
     controller.addListener(tabListener);
   }
-@override
+
+  @override
   void didChangeDependencies() {
-  for(int i = 0; i < IconsImages.length; i++){
-    precacheImage(IconsImages[i].image, context);
-  }
+    for (int i = 0; i < IconsImages.length; i++) {
+      precacheImage(IconsImages[i].image, context);
+    }
     super.didChangeDependencies();
   }
+
   @override
   void dispose() {
     controller.removeListener(tabListener);
@@ -153,7 +157,17 @@ class _RootTabState extends State<RootTab> with SingleTickerProviderStateMixin {
           const LibraryMainScreen(),
           Center(
             child: Container(
-              child: Text('마이페이지'),
+              child: ElevatedButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(builder: (context) => LoginCheckScreen(),),);
+                  },
+                style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all(
+                    MAIN_COLOR,
+                  ),
+                ),
+                child: Text('로그인'),
+              ),
             ),
           ),
         ],

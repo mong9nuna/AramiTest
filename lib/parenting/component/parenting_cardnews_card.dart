@@ -1,7 +1,7 @@
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
-import 'package:arami/library/view/parenting_parentaledu_detail_screen.dart';
+import 'package:arami/parenting/view/parenting_parentaledu_detail_screen.dart';
 import 'package:arami/parenting/view/parenting_parentaledu_screen.dart';
 import 'package:flutter/material.dart';
 

@@ -258,7 +258,7 @@ class _ParentingManagementScreenState extends State<ParentingManagementScreen> {
         return StatefulBuilder(
           builder: (context, setState) {
             return SizedBox(
-              height: 434.0 * getScaleWidth(context),
+              height: 466.0 * getScaleWidth(context),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -278,7 +278,7 @@ class _ParentingManagementScreenState extends State<ParentingManagementScreen> {
                     ),
                   ),
                   SizedBox(
-                    height: 16.0 * getScaleWidth(context),
+                    height: 8.0 * getScaleWidth(context),
                   ),
                   Row(
                     children: [
@@ -488,13 +488,12 @@ class _ParentingManagementScreenState extends State<ParentingManagementScreen> {
                         top: BorderSide(color: OUTLINE, width: 1.0),
                       ),
                     ),
-                    height: 64.0 * getScaleWidth(context),
+                    height: 103.0 * getScaleWidth(context),
                     child: Padding(
                       padding: EdgeInsets.only(
                         top: 8.0 * getScaleWidth(context),
                         left: 16.0 * getScaleWidth(context),
                         right: 16.0 * getScaleWidth(context),
-                        bottom: 8.0 * getScaleWidth(context),
                       ),
                       child: GestureDetector(
                         onTap: () {
@@ -510,21 +509,28 @@ class _ParentingManagementScreenState extends State<ParentingManagementScreen> {
                             }
                           });
                         },
-                        child: Container(
-                          alignment: Alignment.center,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8.0),
-                            color: dateCheck ? GRAY020 : MAIN_COLOR,
-                          ),
-                          width: 328.0 * getScaleWidth(context),
-                          height: 56.0 * getScaleWidth(context),
-                          child: Text(
-                            '확인',
-                            style: BODY3_BOLD.copyWith(
-                              fontSize: 16.0 * getFontWidth(context),
-                              color: WHITE,
+                        child: Column(
+                          children: [
+                            Container(
+                              alignment: Alignment.center,
+                              decoration: BoxDecoration(
+                                borderRadius: BorderRadius.circular(8.0),
+                                color: dateCheck ? GRAY020 : MAIN_COLOR,
+                              ),
+                              width: 328.0 * getScaleWidth(context),
+                              height: 56.0 * getScaleWidth(context),
+                              child: Text(
+                                '확인',
+                                style: BODY3_BOLD.copyWith(
+                                  fontSize: 16.0 * getFontWidth(context),
+                                  color: WHITE,
+                                ),
+                              ),
                             ),
-                          ),
+                            SizedBox(
+                              height: 32.0 * getScaleWidth(context),
+                            ),
+                          ],
                         ),
                       ),
                     ),
