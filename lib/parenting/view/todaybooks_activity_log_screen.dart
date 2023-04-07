@@ -211,6 +211,8 @@ class _TodayBooksActivityLogScreenState
             print(activityLogList[index]);
             return ActivityLogCard(
               item: activityLogList[index],
+              momQnaThemeTag: false,
+              userId: false,
             );
           },
         ),

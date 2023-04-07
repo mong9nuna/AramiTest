@@ -7,9 +7,13 @@ import 'package:arami/common/const/size.dart';
 import 'package:flutter/material.dart';
 
 class ActivityLogCard extends StatefulWidget {
+  final bool userId;
+  final bool momQnaThemeTag; // 맘Qna에 수면,식사예절 상단태그
   final Map<String, dynamic> item;
 
   const ActivityLogCard({
+    required this.userId,
+    required this.momQnaThemeTag,
     required this.item,
     Key? key,
   }) : super(key: key);
@@ -19,7 +23,6 @@ class ActivityLogCard extends StatefulWidget {
 }
 
 class _ActivityLogCardState extends State<ActivityLogCard> {
-
   bool favoriteState = false;
 
   @override
@@ -35,31 +38,103 @@ class _ActivityLogCardState extends State<ActivityLogCard> {
               right: 16.0 * getScaleWidth(context),
               bottom: 8.0 * getScaleWidth(context),
             ),
-            child: Row(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Image.asset(
-                  widget.item['userImage'],
-                  width: 32.0 * getScaleWidth(context),
-                  height: 32.0 * getScaleWidth(context),
+                Container(
+                  child: widget.momQnaThemeTag
+                      ? Column(
+                        children: [
+                          Container(
+                              decoration: BoxDecoration(
+                                color: LIGHT_BG3,
+                                borderRadius: BorderRadius.circular(4.0),
+                                border: Border.all(
+                                  width: 1.0,
+                                  color: GRAY040,
+                                ),
+                              ),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 8.0 * getScaleWidth(context),
+                                  vertical: 2.0 * getScaleWidth(context),
+                                ),
+                                child: Text(
+                                  'ddd',
+                                  style: BODY1_REGULAR.copyWith(
+                                    fontSize: 12.0 * getFontWidth(context),
+                                    color: GRAY040,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          SizedBox(
+                            height: 8.0 * getScaleWidth(context),
+                          ),
+                        ],
+                      )
+                      : null,
                 ),
-                Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 8.0 * getScaleWidth(context),
-                  ),
-                  child: Text(
-                    widget.item['userID'],
-                    style: BODY2_BOLD.copyWith(
-                        fontSize: 14.0 * getFontWidth(context),
+                widget.userId ? Row(
+                  children: [
+                    Image.asset(
+                      widget.item['userImage'],
+                      width: 32.0 * getScaleWidth(context),
+                      height: 32.0 * getScaleWidth(context),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(
+                        horizontal: 8.0 * getScaleWidth(context),
+                      ),
+                      child: Text(
+                        widget.item['userID'],
+                        style: BODY2_BOLD.copyWith(
+                            fontSize: 14.0 * getFontWidth(context),
+                            color: GRAY090,
+                            height: 1.4),
+                      ),
+                    ),
+                    Text(
+                      TimeCount2(widget.item['date']),
+                      style: BODY1_REGULAR.copyWith(
+                        fontSize: 12.0 * getScaleWidth(context),
+                        color: GRAY040,
+                      ),
+                    ),
+                  ],
+                ) : Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      TimeCount3(widget.item['date']),
+                      style: TITLE1_BOLD.copyWith(
+                        fontSize: 20.0 * getScaleWidth(context),
                         color: GRAY090,
-                        height: 1.4),
-                  ),
-                ),
-                Text(
-                  TimeCount2(widget.item['date']),
-                  style: BODY1_REGULAR.copyWith(
-                    fontSize: 12.0 * getScaleWidth(context),
-                    color: GRAY040,
-                  ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 8.0 * getScaleWidth(context),
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                        color: widget.item['publicFlag'] == 'Y' ? MAIN_COLOR : GRAY020,
+                        borderRadius: BorderRadius.circular(4.0),
+                      ),
+                      child: Padding(
+                        padding: EdgeInsets.symmetric(
+                          horizontal: 8.0 * getScaleWidth(context),
+                          vertical: 4.0 * getScaleWidth(context),
+                        ),
+                        child: Text(
+                          widget.item['publicFlag'] == 'Y' ? '공개' : '비공개',
+                          style: BODY1_BOLD.copyWith(
+                            fontSize: 12.0 * getFontWidth(context),
+                            color: WHITE,
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
               ],
             ),
@@ -77,92 +152,7 @@ class _ActivityLogCardState extends State<ActivityLogCard> {
               ),
             ),
           ),
-          if(widget.item['imgType'] == '1')
-          Container(
-            height: 160.0 * getScaleWidth(context),
-            child: ListView.builder(
-              padding: EdgeInsets.symmetric(
-                  horizontal: 16.0 * getScaleWidth(context)),
-              scrollDirection: Axis.horizontal,
-              itemCount: widget.item['detailImages'].length < 2
-                  ? widget.item['detailImages'].length == 0
-                      ? 0
-                      : 1
-                  : 2,
-              itemBuilder: (BuildContext context, int index2) {
-                if (index2 == 0 ||
-                    widget.item['detailImages'].length == 2) {
-                  return GestureDetector(
-                    onTap: () {
-                      print('활동일지 이미지 작동');
-                    },
-                    child: Padding(
-                      padding: index2 > 0
-                          ? EdgeInsets.only(left: 8.0 * getScaleWidth(context))
-                          : EdgeInsets.only(left: 0),
-                      child: SizedBox(
-                        width: 160.0 * getScaleWidth(context),
-                        height: 160.0 * getScaleWidth(context),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(4.0),
-                          child: Image.asset(
-                            widget.item['detailImages'][index2],
-                            fit: BoxFit.cover,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-                } else {
-                  return GestureDetector(
-                    onTap: () {
-                      print('추가이미지 작동');
-                    },
-                    child: Padding(
-                      padding:
-                          EdgeInsets.only(left: 8.0 * getScaleWidth(context)),
-                      child: SizedBox(
-                        width: 160.0 * getScaleWidth(context),
-                        height: 160.0 * getScaleWidth(context),
-                        child: Stack(
-                          children: [
-                            ClipRRect(
-                              borderRadius: BorderRadius.circular(4.0),
-                              child: Image.asset(
-                                widget.item['detailImages'][index2],
-                                height: 160.0 * getScaleWidth(context),
-                                width: 160.0 * getScaleWidth(context),
-                                fit: BoxFit.cover,
-                              ),
-                            ),
-                            Container(
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(4.0),
-                                color: OP50,
-                              ),
-                              width: 160.0 * getScaleWidth(context),
-                              height: 160.0 * getScaleWidth(context),
-                            ),
-                            Align(
-                              alignment: Alignment.center,
-                              child: Text(
-                                '+${widget.item['detailImages'].length - 2}',
-                                style: TITLE1_BOLD.copyWith(
-                                  fontSize: 20.0 * getFontWidth(context),
-                                  color: WHITE,
-                                ),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                  );
-                }
-              },
-            ),
-          ),
-          if(widget.item['imgType'] == '2')
+          if (widget.item['imgType'] == '1')
             Container(
               height: 160.0 * getScaleWidth(context),
               child: ListView.builder(
@@ -171,19 +161,104 @@ class _ActivityLogCardState extends State<ActivityLogCard> {
                 scrollDirection: Axis.horizontal,
                 itemCount: widget.item['detailImages'].length < 2
                     ? widget.item['detailImages'].length == 0
-                    ? 0
-                    : 1
+                        ? 0
+                        : 1
                     : 2,
                 itemBuilder: (BuildContext context, int index2) {
-                  if (index2 == 0 ||
-                      widget.item['detailImages'].length == 2) {
+                  if (index2 == 0 || widget.item['detailImages'].length == 2) {
                     return GestureDetector(
                       onTap: () {
                         print('활동일지 이미지 작동');
                       },
                       child: Padding(
                         padding: index2 > 0
-                            ? EdgeInsets.only(left: 8.0 * getScaleWidth(context))
+                            ? EdgeInsets.only(
+                                left: 8.0 * getScaleWidth(context))
+                            : EdgeInsets.only(left: 0),
+                        child: SizedBox(
+                          width: 160.0 * getScaleWidth(context),
+                          height: 160.0 * getScaleWidth(context),
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(4.0),
+                            child: Image.asset(
+                              widget.item['detailImages'][index2],
+                              fit: BoxFit.cover,
+                            ),
+                          ),
+                        ),
+                      ),
+                    );
+                  } else {
+                    return GestureDetector(
+                      onTap: () {
+                        print('추가이미지 작동');
+                      },
+                      child: Padding(
+                        padding:
+                            EdgeInsets.only(left: 8.0 * getScaleWidth(context)),
+                        child: SizedBox(
+                          width: 160.0 * getScaleWidth(context),
+                          height: 160.0 * getScaleWidth(context),
+                          child: Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.circular(4.0),
+                                child: Image.asset(
+                                  widget.item['detailImages'][index2],
+                                  height: 160.0 * getScaleWidth(context),
+                                  width: 160.0 * getScaleWidth(context),
+                                  fit: BoxFit.cover,
+                                ),
+                              ),
+                              Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(4.0),
+                                  color: OP50,
+                                ),
+                                width: 160.0 * getScaleWidth(context),
+                                height: 160.0 * getScaleWidth(context),
+                              ),
+                              Align(
+                                alignment: Alignment.center,
+                                child: Text(
+                                  '+${widget.item['detailImages'].length - 2}',
+                                  style: TITLE1_BOLD.copyWith(
+                                    fontSize: 20.0 * getFontWidth(context),
+                                    color: WHITE,
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    );
+                  }
+                },
+              ),
+            ),
+          if (widget.item['imgType'] == '2')
+            Container(
+              height: 160.0 * getScaleWidth(context),
+              child: ListView.builder(
+                padding: EdgeInsets.symmetric(
+                    horizontal: 16.0 * getScaleWidth(context)),
+                scrollDirection: Axis.horizontal,
+                itemCount: widget.item['detailImages'].length < 2
+                    ? widget.item['detailImages'].length == 0
+                        ? 0
+                        : 1
+                    : 2,
+                itemBuilder: (BuildContext context, int index2) {
+                  if (index2 == 0 || widget.item['detailImages'].length == 2) {
+                    return GestureDetector(
+                      onTap: () {
+                        print('활동일지 이미지 작동');
+                      },
+                      child: Padding(
+                        padding: index2 > 0
+                            ? EdgeInsets.only(
+                                left: 8.0 * getScaleWidth(context))
                             : EdgeInsets.only(left: 0),
                         child: SizedBox(
                           width: 160.0 * getScaleWidth(context),
@@ -205,7 +280,7 @@ class _ActivityLogCardState extends State<ActivityLogCard> {
                       },
                       child: Padding(
                         padding:
-                        EdgeInsets.only(left: 8.0 * getScaleWidth(context)),
+                            EdgeInsets.only(left: 8.0 * getScaleWidth(context)),
                         child: SizedBox(
                           width: 160.0 * getScaleWidth(context),
                           height: 160.0 * getScaleWidth(context),
