@@ -61,6 +61,8 @@ class _DefaultLayoutState extends State<DefaultLayout> {
       bottom: false,
       top: false,
       child: Scaffold(
+        resizeToAvoidBottomInset: false,
+        // ↑ 키보드 입력 시 overflow 방지를 위해 사용합니다.
         backgroundColor: widget.backgroundColor ?? WHITE,
         body: widget.child,
         bottomNavigationBar: widget.bottomNavigationBar,

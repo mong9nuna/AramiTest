@@ -2,7 +2,9 @@ import 'package:arami/common/component/custom_download_dialog.dart';
 import 'package:arami/common/const/colors.dart';
 import 'package:arami/common/const/fonts.dart';
 import 'package:arami/common/const/size.dart';
+import 'package:arami/library/view/library_detail_activity_log_webview_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:webview_flutter/webview_flutter.dart';
 
 class LibraryDetailReadingScreen extends StatefulWidget {
   const LibraryDetailReadingScreen({Key? key}) : super(key: key);
@@ -14,6 +16,8 @@ class LibraryDetailReadingScreen extends StatefulWidget {
 
 class _LibraryDetailReadingScreenState
     extends State<LibraryDetailReadingScreen> {
+  WebViewController? _webViewController;
+
   List<Map<String, dynamic>> itemList = [
     {
       'id': 'file01',
@@ -22,7 +26,7 @@ class _LibraryDetailReadingScreenState
       'file': 'https://www.arambooks.com/upload/activitybook_1.pdf',
       'originFileName': '활동지',
       'download': 'false',
-      'innerFilePath' : '',
+      'innerFilePath': '',
     },
     {
       'id': 'file02',
@@ -31,7 +35,7 @@ class _LibraryDetailReadingScreenState
       'file': 'https://www.arambooks.com/upload/activitybook_1.pdf',
       'originFileName': '활동지2',
       'download': 'false',
-      'innerFilePath' : '',
+      'innerFilePath': '',
     },
   ];
 
@@ -130,6 +134,44 @@ class _LibraryDetailReadingScreenState
                           ),
                           Text(
                             '활동지 다운로드',
+                            style: BODY3_BOLD.copyWith(
+                              fontSize: 16.0 * getFontWidth(context),
+                              color: WHITE,
+                              height: 1,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          LibraryDetailActivityLogWebviewScreen(),
+                    ),
+                  );
+                },
+                child: Padding(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 40.0 * getScaleWidth(context),
+                    vertical: 16.0 * getScaleWidth(context),
+                  ),
+                  child: SizedBox(
+                    height: 48.0 * getScaleWidth(context),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(8.0),
+                        color: MAIN_COLOR,
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            'webView',
                             style: BODY3_BOLD.copyWith(
                               fontSize: 16.0 * getFontWidth(context),
                               color: WHITE,
